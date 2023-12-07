@@ -1,4 +1,5 @@
 # aprl-kql-workbook
 
-これは [Azure Proactive Resiliency Library (APRL)](https://azure.github.io/Azure-Proactive-Resiliency-Library/services/) に公開されている、Azure Services のリソース検出用 Azure Resource Graph をひとまとめにした Azure ブックのテンプレートです。
-各カテゴリ、サービスの推奨事項に準拠していないリソースを探す際、1 つ 1 つクエリをコピペせず済むようまとめました。
+This is a template of an Azure Workbooks that consolidates Azure Resource Graph for resource detection of Azure Services, which is published on [Azure Proactive Resiliency Library (APRL)](https://azure.github.io/Azure-Proactive-Resiliency-Library/services/). 
+
+It summarizes the queries for each category and service to find resources that do not comply with the recommended practices, so that you can avoid copying and pasting queries one by one.
