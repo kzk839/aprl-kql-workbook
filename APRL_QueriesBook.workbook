@@ -1,0 +1,2764 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "parameters": [
+          {
+            "id": "eff9152a-176c-4422-b5b9-b7dc184e5bee",
+            "version": "KqlParameterItem/1.0",
+            "name": "Subscriptions",
+            "type": 6,
+            "isRequired": true,
+            "multiSelect": true,
+            "quote": "'",
+            "delimiter": ",",
+            "typeSettings": {
+              "additionalResourceOptions": [
+                "value::all"
+              ],
+              "includeAll": false,
+              "showDefault": false
+            },
+            "timeContext": {
+              "durationMs": 86400000
+            },
+            "value": [
+              "value::all"
+            ]
+          }
+        ],
+        "style": "pills",
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources"
+      },
+      "name": "パラメーター - 1"
+    },
+    {
+      "type": 11,
+      "content": {
+        "version": "LinkItem/1.0",
+        "style": "tabs",
+        "tabStyle": "bigger",
+        "links": [
+          {
+            "id": "fabe59e1-b050-49c2-81fd-808149919385",
+            "cellValue": "selectedCategory",
+            "linkTarget": "parameter",
+            "linkLabel": "AI and ML",
+            "subTarget": "AIandML",
+            "style": "link"
+          },
+          {
+            "id": "5e307ab4-6fba-4a7a-9d6c-c5e3d54d9f38",
+            "cellValue": "selectedCategory",
+            "linkTarget": "parameter",
+            "linkLabel": "Compute",
+            "subTarget": "Compute",
+            "style": "link"
+          },
+          {
+            "id": "ee6d7ce2-77d1-4909-902a-e81bef9ecc7f",
+            "cellValue": "selectedCategory",
+            "linkTarget": "parameter",
+            "linkLabel": "Containers",
+            "subTarget": "Containers",
+            "style": "link"
+          },
+          {
+            "id": "7f75be61-0ba1-4134-b735-f37a2ec1b577",
+            "cellValue": "selectedCategory",
+            "linkTarget": "parameter",
+            "linkLabel": "Databases",
+            "subTarget": "Databases",
+            "style": "link"
+          },
+          {
+            "id": "a7252cba-2cdc-47db-914c-eed87e029373",
+            "cellValue": "selectedCategory",
+            "linkTarget": "parameter",
+            "linkLabel": "General",
+            "subTarget": "General",
+            "style": "link"
+          },
+          {
+            "id": "3f0650bd-0d31-4bab-a195-1a62e8475299",
+            "cellValue": "selectedCategory",
+            "linkTarget": "parameter",
+            "linkLabel": "Hybrid",
+            "subTarget": "Hybrid",
+            "style": "link"
+          },
+          {
+            "id": "7ba3e339-bfad-4d10-ac62-8266fd9998d8",
+            "cellValue": "selectedCategory",
+            "linkTarget": "parameter",
+            "linkLabel": "Integration",
+            "subTarget": "Integration",
+            "style": "link"
+          },
+          {
+            "id": "49313fda-6e50-4fa5-8c95-2ac12b290514",
+            "cellValue": "selectedCategory",
+            "linkTarget": "parameter",
+            "linkLabel": "Internet of Things",
+            "subTarget": "InternetOfThings",
+            "style": "link"
+          },
+          {
+            "id": "96b82891-5502-46cd-80b9-643115a32c6d",
+            "cellValue": "selectedCategory",
+            "linkTarget": "parameter",
+            "linkLabel": "Management",
+            "subTarget": "Management",
+            "style": "link"
+          },
+          {
+            "id": "d1a3e9bc-eaf1-4bd6-9595-9d27436611fb",
+            "cellValue": "selectedCategory",
+            "linkTarget": "parameter",
+            "linkLabel": "Migration",
+            "subTarget": "Migration",
+            "style": "link"
+          },
+          {
+            "id": "b0fb80cb-b967-4e45-abad-057b66c272ed",
+            "cellValue": "selectedCategory",
+            "linkTarget": "parameter",
+            "linkLabel": "Monitoring",
+            "subTarget": "Monitoring",
+            "style": "link"
+          },
+          {
+            "id": "8d76b21e-0020-4054-a9cc-35558af51d27",
+            "cellValue": "selectedCategory",
+            "linkTarget": "parameter",
+            "linkLabel": "Networking",
+            "subTarget": "Networking",
+            "style": "link"
+          },
+          {
+            "id": "cbbe04d7-739c-4a58-8798-460a9839bb9f",
+            "cellValue": "selectedCategory",
+            "linkTarget": "parameter",
+            "linkLabel": "Security",
+            "subTarget": "Security",
+            "style": "link"
+          },
+          {
+            "id": "cf607f83-df97-4493-8ad5-477b898dc811",
+            "cellValue": "selectedCategory",
+            "linkTarget": "parameter",
+            "linkLabel": "Specialized Workloads",
+            "subTarget": "SpecializedWorkloads",
+            "style": "link"
+          },
+          {
+            "id": "733928a5-2426-41b8-b454-3211651edbc7",
+            "cellValue": "selectedCategory",
+            "linkTarget": "parameter",
+            "linkLabel": "Storage",
+            "subTarget": "Storage",
+            "style": "link"
+          },
+          {
+            "id": "8def5550-a8be-4db9-ba79-7e51cf2f95d9",
+            "cellValue": "selectedCategory",
+            "linkTarget": "parameter",
+            "linkLabel": "Web",
+            "subTarget": "Web",
+            "style": "link"
+          }
+        ]
+      },
+      "name": "Categories"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 11,
+            "content": {
+              "version": "LinkItem/1.0",
+              "style": "tabs",
+              "links": [
+                {
+                  "id": "c53e52cd-7997-4442-ae5a-f643cc60adf6",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Azure Databricks",
+                  "subTarget": "databricks",
+                  "style": "link"
+                }
+              ]
+            },
+            "name": "AI and ML Tabs"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "Under-Development",
+              "style": "info"
+            },
+            "name": "テキスト - 1"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedCategory",
+        "comparison": "isEqualTo",
+        "value": "AIandML"
+      },
+      "name": "AI and ML"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 11,
+            "content": {
+              "version": "LinkItem/1.0",
+              "style": "tabs",
+              "links": [
+                {
+                  "id": "e9df16e4-ccb7-4e40-8200-e0c9055cc1ea",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Azure Site Recovery",
+                  "subTarget": "ASR",
+                  "style": "link"
+                },
+                {
+                  "id": "ae52ec72-9750-46a4-8941-57723fb9232e",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Compute Gallery",
+                  "subTarget": "ComputeGallery",
+                  "style": "link"
+                },
+                {
+                  "id": "2f53ff41-40e0-4cf7-aa9e-dfe02436a839",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Image Templates",
+                  "subTarget": "ImageTemplates",
+                  "style": "link"
+                },
+                {
+                  "id": "c1b95d43-fa6d-4bd4-8cbe-d401a6f8b819",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Virtual Machine Scale Sets",
+                  "subTarget": "VMSS",
+                  "style": "link"
+                },
+                {
+                  "id": "c3916279-9d38-43db-b752-b5e39e3a41e0",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Virtual Machines",
+                  "subTarget": "VM",
+                  "style": "link"
+                }
+              ]
+            },
+            "name": "Compute Tabs"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "Under-Development",
+              "style": "info"
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ASR"
+            },
+            "name": "ASR Info"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Query to list all image versions,its associated image name and version replica configurations per region in a compute gallery whose version replicas is less than 3\r\nresources\r\n| where type =~ \"microsoft.compute/galleries/images/versions\"\r\n| extend GalleryName = tostring(split(tostring(id), \"/\")[8]), ImageName = tostring(split(tostring(id), \"/\")[10])\r\n| mv-expand VersionReplicas = properties.publishingProfile.targetRegions\r\n| project RecommendationId=\"cg-1\",name,id,tags,param1=strcat(\"GalleryName: \",GalleryName),param2=strcat(\"ImageName: \",ImageName),param3=strcat(\"VersionReplicaRegionName: \",VersionReplicas.name),param4=strcat(\"VersionReplicationCount: \",VersionReplicas.regionalReplicaCount),rc=toint(VersionReplicas.regionalReplicaCount)\r\n| where rc < 3\r\n| project-away rc",
+              "size": 0,
+              "title": "CG-1 - A minimum of three replicas should be kept for production image versions",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ComputeGallery"
+            },
+            "name": "CG-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Query to list all image versions and its associated image and gallery name whose Storage account type is not using ZRS\r\nresources\r\n| where type =~ \"microsoft.compute/galleries/images/versions\"\r\n| extend GalleryName = tostring(split(tostring(id), \"/\")[8]), ImageName = tostring(split(tostring(id), \"/\")[10])\r\n| extend StorageAccountType = tostring(properties.publishingProfile.storageAccountType)\r\n| where StorageAccountType !has \"ZRS\"\r\n| project RecommendationId=\"cg-2\",name,id,tags,param1=strcat(\"GalleryName: \",GalleryName),param2=strcat(\"ImageName: \",ImageName),param3=strcat(\"StorageAccountType: \",StorageAccountType)",
+              "size": 0,
+              "title": "CG-2 - Zone redundant storage should be used for image versions",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ComputeGallery"
+            },
+            "name": "CG-2"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Query to list all images whose Hyper-V generation is not V2\r\nresources\r\n| where type =~ \"microsoft.compute/galleries/images\"\r\n| extend VMGeneration = properties.hyperVGeneration\r\n| where VMGeneration <> 'V2'\r\n| project RecommendationId=\"cg-3\",name,id,tags,param1=strcat(\"VMGeneration: \",VMGeneration)",
+              "size": 0,
+              "title": "CG-3 - Consider using hyper-V generation version 2 images where possible",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ComputeGallery"
+            },
+            "name": "CG-3"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "Under-Development",
+              "style": "info"
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ImageTemplates"
+            },
+            "name": "Image Templates Info"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all zonal VMs that are NOT deployed with Flex orchestration mode\r\nresources\r\n| where type == \"microsoft.compute/virtualmachinescalesets\"\r\n| where properties.orchestrationMode != \"Flexible\"\r\n| project recommendationId = \"vmss-1\", name, id, param1 = strcat(\"orchestrationMode: \", tostring(properties.orchestrationMode))",
+              "size": 0,
+              "title": "VMSS-1 - Deploy VMSS with Flex orchestration mode instead of Uniform",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VMSS"
+            },
+            "name": "VMSS-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find VMSS instances associated with autoscale settings when autoscale is disabled\r\nresources\r\n| where type == \"microsoft.compute/virtualmachinescalesets\"\r\n| project name, id\r\n| join kind=leftouter  (\r\n    resources\r\n    | where type == \"microsoft.insights/autoscalesettings\"\r\n    | where tostring(properties.targetResourceUri) contains \"Microsoft.Compute/virtualMachineScaleSets\"\r\n    | project id = tostring(properties.targetResourceUri), autoscalesettings = properties\r\n) on id\r\n| where isnull(autoscalesettings) or autoscalesettings.enabled == \"false\"\r\n| project recommendationId = \"vmss-4\", name, id, param1 = \"autoscalesettings: Manual\"\r\n| order by id asc",
+              "size": 0,
+              "title": "VMSS-4 - Configure VMSS Autoscale to custom and configure the scaling metrics",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VMSS"
+            },
+            "name": "VMSS-4"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find VMSS instances associated with autoscale settings when predictiveAutoscalePolicy_scaleMode is disabled\r\nresources\r\n| where type == \"microsoft.compute/virtualmachinescalesets\"\r\n| project name, id\r\n| join kind=leftouter  (\r\n    resources\r\n    | where type == \"microsoft.insights/autoscalesettings\"\r\n    | where tostring(properties.targetResourceUri) contains \"Microsoft.Compute/virtualMachineScaleSets\"\r\n    | project id = tostring(properties.targetResourceUri), autoscalesettings = properties\r\n) on id\r\n| where autoscalesettings.enabled == \"true\" and autoscalesettings.predictiveAutoscalePolicy.scaleMode == \"Disabled\"\r\n| project recommendationId = \"vmss-5\", name, id, param1 = \"predictiveAutoscalePolicy_scaleMode: Disabled\"\r\n| order by id asc",
+              "size": 0,
+              "title": "VMSS-5 - Enable Predictive autoscale and configure at least for Forecast Only",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VMSS"
+            },
+            "name": "VMSS-5"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find VMSS instances where strictly zoneBalance is set to True\r\nresources\r\n| where type == \"microsoft.compute/virtualmachinescalesets\"\r\n| where properties.orchestrationMode == \"Uniform\" and properties.zoneBalance == true\r\n| project recommendationId = \"vmss-6\", name, id, tags, param1 = \"strictly zoneBalance: Enabled\"\r\n| order by id asc",
+              "size": 0,
+              "title": "VMSS-6 - Disable Force strictly even balance across zones to avoid scale in and out fail attempts",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VMSS"
+            },
+            "name": "VMSS-6"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find VMSS instances where Spreading algorithm is set to Static\r\nresources\r\n| where type == \"microsoft.compute/virtualmachinescalesets\"\r\n| where properties.platformFaultDomainCount > 1\r\n| project recommendationId = \"vmss-7\", name, id, param1 = \"platformFaultDomainCount: Static\"\r\n| order by id asc",
+              "size": 0,
+              "title": "VMSS-7 - Configure Allocation Policy Spreading algorithm to Max Spreading",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VMSS"
+            },
+            "name": "VMSS-7"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find VMSS instances with one or no Zones selected\r\nresources\r\n| where type == \"microsoft.compute/virtualmachinescalesets\"\r\n| where array_length(zones) <= 1 or isnull(zones)\r\n| project recommendationId = \"vmss-8\", name, id, param1 = \"AvailabilityZones: Single Zone\"\r\n| order by id asc",
+              "size": 0,
+              "title": "VMSS-8 - Deploy VMSS across availability zones with VMSS Flex",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VMSS"
+            },
+            "name": "VMSS-8"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all VMs that are not assigned to a Zone\r\nResources\r\n| where type =~ 'Microsoft.Compute/virtualMachines'\r\n| where isnull(zones)\r\n| project recommendationId = \"vm-2\", name, id, param1=\"Zones: No Zone\"",
+              "size": 0,
+              "title": "VM-2 - Deploy VMs across Availability Zones",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VM"
+            },
+            "name": "VM-2"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all VMs that do NOT have replication with ASR enabled\r\n// Run query to see results.\r\nresources\r\n| where type =~ 'Microsoft.Compute/virtualMachines'\r\n| project name, id\r\n| join kind=leftouter (\r\n    recoveryservicesresources\r\n    | where type =~ 'Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectedItems'\r\n    | where properties.providerSpecificDetails.dataSourceInfo.datasourceType =~ 'AzureVm'\r\n    | project id=properties.providerSpecificDetails.dataSourceInfo.resourceId\r\n    | extend name=strcat_array(array_slice(split(id, '/'), 8, -1), '/')\r\n) on name\r\n| where isnull(id1)\r\n| project-away id1\r\n| project-away name1\r\n| project recommendationId = \"vm-4\", name, id\r\n| order by id asc",
+              "size": 0,
+              "title": "VM-4 - Replicate VMs using Azure Site Recovery",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VM"
+            },
+            "name": "VM-4"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all VMs that are not using Managed Disks\r\nResources\r\n| where type =~ 'Microsoft.Compute/virtualMachines'\r\n| where isnull(properties.storageProfile.osDisk.managedDisk)\r\n| project recommendationId = \"vm-5\", name, id",
+              "size": 0,
+              "title": "VM-5 - Use Managed Disks for VM disks",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VM"
+            },
+            "name": "VM-5"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all VMs that only have a single Disk\r\nResources\r\n| where type =~ 'Microsoft.Compute/virtualMachines'\r\n| where array_length(properties.storageProfile.dataDisks) < 1\r\n| project recommendationId = \"vm-6\", name, id",
+              "size": 0,
+              "title": "VM-6 - Host application or database data on a data disk",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VM"
+            },
+            "name": "VM-6"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all VMs that do NOT have Backup enabled\r\n// Run query to see results.\r\nresources\r\n| where type =~ 'Microsoft.Compute/virtualMachines'\r\n| project name, id\r\n| join kind=leftouter (\r\n    recoveryservicesresources\r\n    | where type =~ 'Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems'\r\n    | where properties.dataSourceInfo.datasourceType =~ 'Microsoft.Compute/virtualMachines'\r\n    | project idBackupEnabled=properties.sourceResourceId\r\n    | extend name=strcat_array(array_slice(split(idBackupEnabled, '/'), 8, -1), '/')\r\n) on name\r\n| where isnull(idBackupEnabled)\r\n| project-away idBackupEnabled\r\n| project-away name1\r\n| project recommendationId = \"vm-7\", name, id\r\n| order by id asc",
+              "size": 0,
+              "title": "VM-7 - Backup VMs with Azure Backup service",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VM"
+            },
+            "name": "VM-7"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all disks with StandardHDD sku attached to VMs\r\nResources\r\n| where type =~ 'Microsoft.Compute/disks'\r\n| where sku.name == 'Standard_LRS' and sku.tier == 'Standard'\r\n| where managedBy != \"\"\r\n| project recommendationId = \"vm-8\", name, id, param1=strcat(\"managedBy: \", managedBy)",
+              "size": 0,
+              "title": "VM-8 - Production VMs should be using SSD disks",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VM"
+            },
+            "name": "VM-8"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all VMs that are NOT running\r\nResources\r\n| where type =~ 'Microsoft.Compute/virtualMachines'\r\n| where properties.extended.instanceView.powerState.displayStatus != 'VM running'\r\n| project recommendationId = \"vm-9\", name, id",
+              "size": 0,
+              "title": "VM-9 - Review VMs in stopped state",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VM"
+            },
+            "name": "VM-9"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all VM NICs that do not have Accelerated Networking enabled\r\nResources\r\n| where type =~ 'Microsoft.Compute/virtualMachines'\r\n| mv-expand nic=properties.networkProfile.networkInterfaces\r\n| project name, id, nicName = tostring(split(tostring(nic.id), '/')[8])\r\n| join kind=inner (\r\n    Resources\r\n    | where type =~ 'Microsoft.Network/networkInterfaces'\r\n    | where properties.enableAcceleratedNetworking == false\r\n    | project nicName = tostring(split(tostring(id), '/')[8])\r\n) on nicName\r\n| summarize NicNames = make_set(nicName) by name, id\r\n| project recommendationId = \"vm-10\", name, id, param1=NicNames\r\n| order by id asc",
+              "size": 0,
+              "title": "VM-10 - Enable Accelerated Networking (AccelNet)",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VM"
+            },
+            "name": "VM-10"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all VMs with Accelerated Networking Enabled - GuestOS admins should validate the drivers for these VMs. This is not an indication of an issue as the query does not have access to the GuestOS.\r\nResources\r\n| where type =~ 'Microsoft.Compute/virtualMachines'\r\n| mv-expand nic=properties.networkProfile.networkInterfaces\r\n| project name, id, nicName = tostring(split(tostring(nic.id), '/')[8])\r\n| join kind=inner (\r\n    Resources\r\n    | where type =~ 'Microsoft.Network/networkInterfaces'\r\n    | where properties.enableAcceleratedNetworking == true\r\n    | project nicName = tostring(split(tostring(id), '/')[8])\r\n) on nicName\r\n| project recommendationId = \"vm-11\", name, id\r\n| order by id asc",
+              "size": 0,
+              "title": "VM-11 - When AccelNet is enabled, you must manually update the GuestOS NIC driver",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VM"
+            },
+            "name": "VM-11"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all VMs with PublicIPs directly associated with them\r\nResources\r\n| where type =~ 'Microsoft.Compute/virtualMachines'\r\n| where isnotnull(properties.networkProfile.networkInterfaces)\r\n| mv-expand nic=properties.networkProfile.networkInterfaces\r\n| project name, id, nicId = nic.id\r\n| extend nicId = tostring(nicId)\r\n| join kind=inner (\r\n    Resources\r\n    | where type =~ 'Microsoft.Network/networkInterfaces'\r\n    | where isnotnull(properties.ipConfigurations)\r\n    | mv-expand ipconfig=properties.ipConfigurations\r\n    | extend publicIp = tostring(ipconfig.properties.publicIPAddress.id)\r\n    | where publicIp != \"\"\r\n    | project name, nicId = tostring(id), publicIp\r\n) on nicId\r\n| project recommendationId = \"vm-12\", name, id\r\n| order by id asc",
+              "size": 0,
+              "title": "VM-12 - VMs should not have a Public IP directly associated",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VM"
+            },
+            "name": "VM-12"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all VM NICs that have IPForwarding enabled. This feature is usually only required for Network Virtual Appliances\r\nResources\r\n| where type =~ 'Microsoft.Compute/virtualMachines'\r\n| where isnotnull(properties.networkProfile.networkInterfaces)\r\n| mv-expand nic=properties.networkProfile.networkInterfaces\r\n| project name, id, nicId = nic.id\r\n| extend nicId = tostring(nicId)\r\n| join kind=inner (\r\n    Resources\r\n    | where type =~ 'Microsoft.Network/networkInterfaces'\r\n    | where properties.enableIPForwarding == true\r\n    | project nicId = tostring(id)\r\n) on nicId\r\n| project recommendationId = \"vm-14\", name, id\r\n| order by id asc",
+              "size": 0,
+              "title": "VM-14 - IP Forwarding should only be enabled for Network Virtual Appliances",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VM"
+            },
+            "name": "VM-14"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all VM NICs that have DNS Server settings configured in any of the NICs\r\nResources\r\n| where type =~ 'Microsoft.Compute/virtualMachines'\r\n| where isnotnull(properties.networkProfile.networkInterfaces)\r\n| mv-expand nic=properties.networkProfile.networkInterfaces\r\n| project name, id, nicId = nic.id\r\n| extend nicId = tostring(nicId)\r\n| join kind=inner (\r\n    Resources\r\n    | where type =~ 'Microsoft.Network/networkInterfaces'\r\n    | project name, id, dnsServers = properties.dnsSettings.dnsServers\r\n    | extend hasDns = array_length(dnsServers) >= 1\r\n    | where hasDns != 0\r\n    | project name, nicId = tostring(id)\r\n) on nicId\r\n| project recommendationId = \"vm-15\", name, id\r\n| order by id asc",
+              "size": 0,
+              "title": "VM-15 - DNS Servers should be configured in the Virtual Network level",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VM"
+            },
+            "name": "VM-15"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all Disks configured to be Shared. This is not an indication of an issue, but if a disk with this configuration is assigned to two or more VMs without a proper disk control mechanism (like a WSFC) it can lead to data loss\r\nResources\r\n| where type =~ 'Microsoft.Compute/disks'\r\n| where isnotnull(properties.maxShares)\r\n| project recommendationId = \"vm-16\", name, id\r\n| order by id asc",
+              "size": 0,
+              "title": "VM-16 - Shared disks should only be enabled in clustered servers",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VM"
+            },
+            "name": "VM-16"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all Disks with \"Enable public access from all networks\" enabled\r\nResources\r\n| where type =~ 'Microsoft.Compute/disks'\r\n| where properties.publicNetworkAccess == \"Enabled\"\r\n| project recommendationId = \"vm-17\", name, id\r\n| order by id asc",
+              "size": 0,
+              "title": "VM-17 - Network access to the VM disk should be set to “Disable public access and enable private access”",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VM"
+            },
+            "name": "VM-17"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all VMs in \"NonCompliant\" state with Azure Policies\r\nPolicyResources\r\n| where type =~ 'microsoft.policyinsights/policystates'\r\n| where properties.complianceState == 'NonCompliant'\r\n| extend vmResourceId = properties.resourceId, vmresourceType = properties.resourceType, PolicyAssignmentName = properties.policyAssignmentName\r\n| where vmresourceType == 'Microsoft.Compute/virtualMachines'\r\n| project recommendationId = \"vm-18\", name = tostring(split(tostring(properties.resourceId), '/')[8]), id=vmResourceId, param1 = strcat (\"Policyname: \", name)",
+              "size": 0,
+              "title": "VM-18 - Ensure that your VMs are compliant with Azure Policies",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VM"
+            },
+            "name": "VM-18"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all disks that are not encrypted\r\nresources\r\n| where type == \"microsoft.compute/disks\"\r\n| extend encryptionType = properties.encryption.type\r\n| extend diskState = properties.diskState\r\n| where encryptionType !in (\"EncryptionAtRestWithCustomerKey\", \"EncryptionAtRestWithPlatformAndCustomerKeys\", \"EncryptionAtRestWithPlatformKey\")\r\n| project recommendationId=\"vm-19\", name, id, param1=strcat(\"encryptionType: \" , properties.encryption.type), param2= strcat (\"diskstate: \", properties.diskState)",
+              "size": 0,
+              "title": "VM-19 - Enable disk encryption and data at rest encryption by default",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VM"
+            },
+            "name": "VM-19"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all VMs that do not have the VM Insights extension installed\r\nresources\r\n| where type == 'microsoft.compute/virtualmachines'\r\n| extend\r\n    JoinID = toupper(id),\r\n    vmName = name,\r\n    OSType = tostring(properties.storageProfile.osDisk.osType)\r\n| join kind=leftouter(\r\n    resources\r\n    | where type == 'microsoft.compute/virtualmachines/extensions'\r\n    | extend\r\n        VMId = toupper(substring(id, 0, indexof(id, '/extensions'))),\r\n        ExtensionName = name\r\n) on $left.JoinID == $right.VMId\r\n| summarize param2 = strcat (\"Extensions: \", make_list(ExtensionName)) by recommendationId=\"vm-20\", name=vmName, id, param1=OSType\r\n| where param2 !contains \"MicrosoftMonitoringAgent\" and param2 !contains \"OMSAgentforLinux\" and param2 !contains \"AzureMonitorWindowsAgent\" and param2 !contains \"AzureMonitorLinuxAgent\"\r\n| order by tolower(name) asc",
+              "size": 0,
+              "title": "VM-20 - Enable VM Insights",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VM"
+            },
+            "name": "VM-20"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find VMS that do not have maintenance configuration assigned\r\nResources\r\n| extend resourceId = tolower(id)\r\n| project name, location, type, id, resourceId, properties\r\n| where type =~ 'Microsoft.Compute/virtualMachines'\r\n| join kind=leftouter (\r\nmaintenanceresources\r\n| where type =~ \"microsoft.maintenance/configurationassignments\"\r\n| project planName = name, type, maintenanceProps = properties\r\n| extend resourceId = tostring(maintenanceProps.resourceId)\r\n) on resourceId\r\n| where isnull(maintenanceProps)\r\n| project recommendationId = \"vm-22\",name, id\r\n| order by id asc",
+              "size": 0,
+              "title": "VM-22 - Use maintenance configurations for the VMs",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VM"
+            },
+            "name": "VM-22"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedCategory",
+        "comparison": "isEqualTo",
+        "value": "Compute"
+      },
+      "name": "Compute "
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 11,
+            "content": {
+              "version": "LinkItem/1.0",
+              "style": "tabs",
+              "links": [
+                {
+                  "id": "492da5ac-2294-4de5-9107-383962771e1e",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "AKS",
+                  "subTarget": "AKS",
+                  "style": "link"
+                },
+                {
+                  "id": "29a42bef-4e07-4c82-a6de-ab01ce2053e9",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Container Registry",
+                  "subTarget": "ContainerRegistry",
+                  "style": "link"
+                }
+              ]
+            },
+            "name": "Containers Tabs"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Query AKS clusters not using zones\r\nresources\r\n| where type == \"microsoft.containerservice/managedclusters\"\r\n| extend zones = tostring(parse_json(properties.agentPoolProfiles[0].availabilityZones))\r\n| where isempty(zones)\r\n| project recommendationid=\"aks-1\", name, id, param1=strcat(\"zones: \", zones)",
+              "size": 0,
+              "title": "AKS-1 - Deploy AKS cluster across availability zones",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "AKS"
+            },
+            "name": "AKS-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find AKS clusters not using taints.\r\nresources\r\n| where type == \"microsoft.containerservice/managedclusters\"\r\n| extend taint = tostring(parse_json(properties.agentPoolProfiles[1].nodeTaints))\r\n| where isempty(taint)\r\n| project recommendationid=\"aks-2\", name, id, param1=strcat(\"taint: \", taint)",
+              "size": 0,
+              "title": "AKS-2 - Isolate system pods",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "AKS"
+            },
+            "name": "AKS-2"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Returns a list of AKS clusters not using AAD enabled\r\nresources\r\n| where type == \"microsoft.containerservice/managedclusters\"\r\n| extend aadProfile = tostring (parse_json(properties.aadProfile))\r\n| extend disablelocalAdmin = tostring(parse_json(properties.disableLocalAccounts))\r\n| extend RBAC = tostring(parse_json(properties.enableRBAC))\r\n| where RBAC == \"false\"\r\n| project recommendationId=\"aks-3\", name, id, param1=strcat(\"aadProfile: \", aadProfile), param2=strcat(\"disablelocalAdmin: \",disablelocalAdmin), param3=strcat(\"RBAC: \", RBAC)",
+              "size": 0,
+              "title": "AKS-3 - Enable AKS-managed Azure AD integration",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "AKS"
+            },
+            "name": "AKS-3"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Check AKS Clusters using kubenet network profile\r\nresources\r\n| where type == \"microsoft.containerservice/managedclusters\"\r\n| extend networkProfile = tostring (parse_json(properties.networkProfile.networkPlugin))\r\n| where networkProfile ==\"kubenet\"\r\n| project recommendationId=\"aks-4\", name,id,param1=strcat(\"networkProfile :\",networkProfile)",
+              "size": 0,
+              "title": "AKS-4 - Configure Azure CNI networking for dynamic allocation of IPs",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "AKS"
+            },
+            "name": "AKS-4"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find AKS clusters with auto-scaling disabled\r\nResources\r\n| where type == \"microsoft.containerservice/managedclusters\"\r\n| extend autoScaling = tostring (parse_json(properties.agentPoolProfiles.[0].enableAutoScaling))\r\n| where autoScaling == \"false\"\r\n| project recommendationId=\"aks-5\", name, id, param1=strcat(\"autoScaling :\", autoScaling)",
+              "size": 0,
+              "title": "AKS-5 - Enable the cluster autoscaler on an existing cluster",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "AKS"
+            },
+            "name": "AKS-5"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all Container Registries that are not using the Premium tier\r\nresources\r\n| where type =~ \"microsoft.containerregistry/registries\"\r\n| where sku.name != \"Premium\"\r\n| project recommendationId = \"cr-1\", name, id, param1=strcat(\"SkuName: \", tostring(sku.name))\r\n| order by id asc",
+              "size": 0,
+              "title": "CR-1 - Use Premium tier for critical production workloads",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ContainerRegistry"
+            },
+            "name": "CR-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all Container Registries that do not have zone redundancy enabled\r\nresources\r\n| where type =~ \"microsoft.containerregistry/registries\"\r\n| where properties.zoneRedundancy != \"Enabled\"\r\n| project recommendationId = \"cr-2\", name, id, param1=strcat(\"zoneRedundancy: \", tostring(properties.zoneRedundancy))\r\n| order by id asc",
+              "size": 0,
+              "title": "CR-2 - Enable zone redundancy",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ContainerRegistry"
+            },
+            "name": "CR-2"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all Container Registries that do not have geo-replication enabled\r\nresources\r\n| where type =~ \"microsoft.containerregistry/registries\"\r\n| project registryName = name, registryId = id, primaryRegion = location\r\n| join kind=leftouter (\r\n    Resources\r\n    | where type =~ \"microsoft.containerregistry/registries/replications\"\r\n    | project replicationRegion=name, replicationId = id\r\n    | extend registryId=strcat_array(array_slice(split(replicationId, '/'), 0, -3), '/')\r\n    ) on registryId\r\n| project-away registryId1, replicationId\r\n| where isempty(replicationRegion)\r\n| project recommendationId = \"cr-3\", name=registryName, id=registryId\r\n| order by id asc",
+              "size": 0,
+              "title": "CR-3 - Enable geo-replication",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ContainerRegistry"
+            },
+            "name": "CR-3"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all Container Registries that have anonymous pull access enabled\r\nresources\r\n| where type =~ \"microsoft.containerregistry/registries\"\r\n| where properties.anonymousPullEnabled == \"true\"\r\n| project recommendationId = \"cr-8\", name, id\r\n| order by id asc",
+              "size": 0,
+              "title": "CR-8 - Disable anonymous pull access",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ContainerRegistry"
+            },
+            "name": "CR-8"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Provides a list of Azure Container Registry resources that do not have soft delete enabled\r\nresources\r\n| where type =~ \"microsoft.containerregistry/registries\"\r\n| where properties.policies.softDeletePolicy.status == \"disabled\"\r\n| project recommendationId = \"cr-12\", name, id\r\n| order by id asc",
+              "size": 0,
+              "title": "CR-12 - Enable soft delete policy",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ContainerRegistry"
+            },
+            "name": "CR-12"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedCategory",
+        "comparison": "isEqualTo",
+        "value": "Containers"
+      },
+      "name": "Containers"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 11,
+            "content": {
+              "version": "LinkItem/1.0",
+              "style": "tabs",
+              "links": [
+                {
+                  "id": "c684e237-a8e6-4b61-b3a6-55fd806a0459",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "SQL DB",
+                  "subTarget": "SQLDB",
+                  "style": "link"
+                },
+                {
+                  "id": "f57b2cab-42e8-4ce3-bab4-84ad411bcbdb",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Cosmos DB",
+                  "subTarget": "CosmosDB",
+                  "style": "link"
+                },
+                {
+                  "id": "59fceab4-4134-40ef-8b1c-a21a32900e0b",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "DB for PostgreSQL",
+                  "subTarget": "PostgreSQL",
+                  "style": "link"
+                },
+                {
+                  "id": "2b51ca91-fa58-4e78-882f-9d13bb1a33bc",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Redis Cache",
+                  "subTarget": "Redis",
+                  "style": "link"
+                }
+              ]
+            },
+            "name": "Databases Tabs"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "Resources\r\n| where type =~ 'microsoft.sql/servers/databases'\r\n| where tolower(tostring(properties.zoneRedundant))=~'false'\r\n|project recommendationId = \"SQLDB-3\", name, id",
+              "size": 0,
+              "title": "SQLDB-3 - Use a Zone-Redundant Database",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "SQLDB"
+            },
+            "name": "SQLDB-3"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "Resources\r\n| where type =~ 'Microsoft.DocumentDb/databaseAccounts'\r\n| where array_length(properties.locations) < 2\r\n| project recommendationId='cosmos-1', name, id",
+              "size": 0,
+              "title": "COSMOS-1 - Configure at least two regions for high availability",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "CosmosDB"
+            },
+            "name": "CCOSMOS-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "Resources\r\n| where type =~ 'Microsoft.DocumentDb/databaseAccounts'\r\n| where\r\n    array_length(properties.locations) > 1 and\r\n    properties.enableMultipleWriteLocations == false\r\n| project recommendationId='cosmos-3', name, id",
+              "size": 0,
+              "title": "COSMOS-3 - Evaluate multi-region write capability",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "CosmosDB"
+            },
+            "name": "CCOSMOS-3"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "Resources\r\n| where type =~ 'Microsoft.DocumentDb/databaseAccounts'\r\n| where\r\n    properties.backupPolicy.type == 'Periodic' and\r\n    properties.enableMultipleWriteLocations == false and\r\n    properties.enableAnalyticalStorage == false\r\n| project recommendationId='cosmos-5', name, id",
+              "size": 0,
+              "title": "COSMOS-5 - Configure continuous backup mode",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "CosmosDB"
+            },
+            "name": "CCOSMOS-5"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find Database for PostgreSQL instances that are not zone redundant\r\nresources\r\n| where type == \"microsoft.dbforpostgresql/flexibleservers\"\r\n| where properties.highAvailability.mode != \"ZoneRedundant\"\r\n| project recommendationId = \"psql-1\", name, id, param1 = \"ZoneRedundant: False\"",
+              "size": 0,
+              "title": "PSQL-1 - Enable HA with zone redundancy",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "PostgreSQL"
+            },
+            "name": "PSQL-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find Cache for Redis instances with one or no Zones selected\r\nresources\r\n| where type == \"microsoft.cache/redis\"\r\n| where array_length(zones) <= 1 or isnull(zones)\r\n| project recommendationId = \"redis-1\", name, id, param1 = \"AvailabilityZones: Single Zone\"\r\n| order by id asc",
+              "size": 0,
+              "title": "REDIS-1 - Enable zone redundancy for Azure Cache for Redis",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "Redis"
+            },
+            "name": "REDIS-1"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedCategory",
+        "comparison": "isEqualTo",
+        "value": "Databases"
+      },
+      "name": "Databases"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 1,
+            "content": {
+              "json": "No Services",
+              "style": "info"
+            },
+            "name": "General Info"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedCategory",
+        "comparison": "isEqualTo",
+        "value": "General"
+      },
+      "name": "General"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 1,
+            "content": {
+              "json": "No Services",
+              "style": "info"
+            },
+            "name": "Hybrid Info"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedCategory",
+        "comparison": "isEqualTo",
+        "value": "Hybrid"
+      },
+      "name": "Hybrid"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 11,
+            "content": {
+              "version": "LinkItem/1.0",
+              "style": "tabs",
+              "links": [
+                {
+                  "id": "5ce7d89e-f15d-4cf8-992d-f94b00b4e589",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "API Management",
+                  "subTarget": "APIM",
+                  "style": "link"
+                },
+                {
+                  "id": "062e674d-639d-48b6-a3a4-e43042ae48c1",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Event Grid",
+                  "subTarget": "EventGrid",
+                  "style": "link"
+                },
+                {
+                  "id": "37bcdd26-7b99-4985-92fb-3b122a315339",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Event Hub",
+                  "subTarget": "EventHub",
+                  "style": "link"
+                }
+              ]
+            },
+            "name": "Integration Tabs"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all API Management instances that aren't Premium\r\nresources\r\n| where type =~ 'Microsoft.ApiManagement/service'\r\n| extend skuName = sku.name\r\n| where tolower(skuName) != tolower('premium')\r\n| project recommendationId = \"apim-1\", name, id, param1=strcat(\"SKU: \", skuName)",
+              "size": 0,
+              "title": "APIM-1 - Migrate API Management services to Premium SKU to support Availability Zones",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "APIM"
+            },
+            "name": "APIM-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all Premium API Management instances that aren't zone redundant\r\nresources\r\n| where type =~ 'Microsoft.ApiManagement/service'\r\n| extend skuName = sku.name\r\n| where tolower(skuName) == tolower('premium')\r\n| where isnull(zones) or array_length(zones) < 2\r\n| extend zoneValue = iff((isnull(zones)), \"null\", zones)\r\n| project recommendationId = \"apim-2\", name, id, param1=\"Zones: No Zone or Zonal\", param2=strcat(\"Zones value: \", zoneValue )",
+              "size": 0,
+              "title": "APIM-2 - Enable Availability Zones on Premium API Management instances",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "APIM"
+            },
+            "name": "APIM-2"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all eventgrid services not protected by private endpoints.\r\nResources\r\n| where type contains \"eventgrid\"\r\n| where properties['publicNetworkAccess'] == \"Enabled\"\r\n| project recommendationId = \"evg-3\", name, id\r\n| order by id asc",
+              "size": 0,
+              "title": "EVG-3 - Configure Private Endpoints",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "EventGrid"
+            },
+            "name": "EVG-3"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find Event Hub namespace instances that are not zone redundant\r\nresources\r\n| where type == \"microsoft.eventhub/namespaces\"\r\n| where properties.zoneRedundant == false\r\n| project recommendationId = \"evhns-1\", name, id, param1 = \"ZoneRedundant: False\"\r\n| order by id asc",
+              "size": 0,
+              "title": "EVHNS-1 - Enable zone redundancy for Event Hub namespace",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "EventHub"
+            },
+            "name": "EVHNS-1"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedCategory",
+        "comparison": "isEqualTo",
+        "value": "Integration"
+      },
+      "name": "Integration"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 11,
+            "content": {
+              "version": "LinkItem/1.0",
+              "style": "tabs",
+              "links": [
+                {
+                  "id": "8f67a024-5e87-4f3a-968b-166635410ec6",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "IoT Hub",
+                  "subTarget": "IoTHub",
+                  "style": "link"
+                }
+              ]
+            },
+            "name": "Internet of Things Tabs"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "Under-Development",
+              "style": "info"
+            },
+            "name": "IoT Hub Info"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedCategory",
+        "comparison": "isEqualTo",
+        "value": "InternetOfThings"
+      },
+      "name": "Internet of Things"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 11,
+            "content": {
+              "version": "LinkItem/1.0",
+              "style": "tabs",
+              "links": [
+                {
+                  "id": "6457f4ab-66dd-4c4a-8adb-165d48d5031f",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Automation Account",
+                  "subTarget": "Automation",
+                  "style": "link"
+                },
+                {
+                  "id": "a811b8ba-696a-4766-ab62-8c70463f0fe8",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Management Groups",
+                  "subTarget": "ManagementGroup",
+                  "style": "link"
+                }
+              ]
+            },
+            "name": "Management Tabs"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "No Queries",
+              "style": "info"
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "Automation"
+            },
+            "name": "Automation Account Info"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Provides a list of Azure Subscriptions that are placed under the Tenant Root Management Group\r\nResourceContainers\r\n| where type == 'microsoft.resources/subscriptions'\r\n| extend mgParentSize = array_length(properties.managementGroupAncestorsChain)\r\n| where mgParentSize == 1\r\n| project recommendationId=\"mg-1\", name, id",
+              "size": 0,
+              "title": "MG-1 - Subscriptions should not be placed under the Tenant Root Management Group",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ManagementGroup"
+            },
+            "name": "MG-1"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedCategory",
+        "comparison": "isEqualTo",
+        "value": "Management"
+      },
+      "name": "Management"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 11,
+            "content": {
+              "version": "LinkItem/1.0",
+              "style": "tabs",
+              "links": [
+                {
+                  "id": "5f8a618d-d4c1-4bf7-a71b-174bca7cfd0a",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Azure Backup",
+                  "subTarget": "AzureBackup",
+                  "style": "link"
+                }
+              ]
+            },
+            "name": "Migration Tabs"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// This Resource Graph query will return all Recovery services vault with Classic alerts enabled.\r\nResources\r\n| where type in~ ('microsoft.recoveryservices/vaults')\r\n| extend monitoringSettings = parse_json(properties).monitoringSettings\r\n| extend isUsingClassicAlerts = case(isnull(monitoringSettings), 'Enabled',monitoringSettings.classicAlertSettings.alertsForCriticalOperations)\r\n| extend isUsingJobsAlerts = case(isnull(monitoringSettings), 'Enabled', monitoringSettings.azureMonitorAlertSettings.alertsForAllJobFailures)\r\n| where isUsingClassicAlerts == 'Enabled'\r\n| project recommendationId = \"bk-1\",name,id,tags,param1=strcat(\"isUsingClassicAlerts: \", isUsingClassicAlerts),param2=strcat(\"isUsingJobsAlerts: \", isUsingJobsAlerts)",
+              "size": 0,
+              "title": "BK-1 - Migrate from classic alerts to built-in Azure Monitor alerts for Recovery services vaults",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "AzureBackup"
+            },
+            "name": "BK-1"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedCategory",
+        "comparison": "isEqualTo",
+        "value": "Migration"
+      },
+      "name": "Migration"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 11,
+            "content": {
+              "version": "LinkItem/1.0",
+              "style": "tabs",
+              "links": [
+                {
+                  "id": "a1a9ec16-8975-46f4-a4be-6b24afb12194",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Application Insights",
+                  "subTarget": "AppInsights",
+                  "style": "link"
+                },
+                {
+                  "id": "cd0dc5bc-9912-49e7-8619-4bd22f8bfd36",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Log Analytics",
+                  "subTarget": "LogAnalytics",
+                  "style": "link"
+                }
+              ]
+            },
+            "name": "Monitoring Tabs"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "resources\r\n| where type =~ \"microsoft.insights/components\"\r\n| extend IngestionMode = properties.IngestionMode\r\n| where IngestionMode =~ 'ApplicationInsights'\r\n| project recommendationId= \"APPI-1\", name, id, param1=\"ApplicationInsightsDeploymentType: Classic\"",
+              "size": 0,
+              "title": "APPI-1 - Convert Classic Deployments",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "AppInsights"
+            },
+            "name": "APPI-1"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "Under-Development",
+              "style": "info"
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "LogAnalytics"
+            },
+            "name": "Log Analytics Info"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedCategory",
+        "comparison": "isEqualTo",
+        "value": "Monitoring"
+      },
+      "name": "Monitoring"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 11,
+            "content": {
+              "version": "LinkItem/1.0",
+              "style": "tabs",
+              "links": [
+                {
+                  "id": "f10cb33a-6442-4461-be38-419e4b722f68",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Application Gateway",
+                  "subTarget": "AppGW",
+                  "style": "link"
+                },
+                {
+                  "id": "9254cf7e-d064-4e4e-8990-1db356b06016",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "ExpressRoute Circuits",
+                  "subTarget": "ERCircuits",
+                  "style": "link"
+                },
+                {
+                  "id": "8eaf294f-901d-4c3e-afae-9a1faa4996e1",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "ExpressRoute Gateway",
+                  "subTarget": "ERGW",
+                  "style": "link"
+                },
+                {
+                  "id": "407bc7a5-ffc5-4946-9599-a77dc33a1dd9",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Firewall",
+                  "subTarget": "Firewall",
+                  "style": "link"
+                },
+                {
+                  "id": "96284547-fe59-4fc4-8aa9-10d4e4dbaf18",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Front Door",
+                  "subTarget": "FrontDoor",
+                  "style": "link"
+                },
+                {
+                  "id": "773d152f-12c0-42eb-a90a-12ad297b77a1",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "General Networking",
+                  "subTarget": "GeneralNW",
+                  "style": "link"
+                },
+                {
+                  "id": "225e2b33-3b9a-4ac3-9a02-8f8393cb55a2",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Load Balancer",
+                  "subTarget": "LB",
+                  "style": "link"
+                },
+                {
+                  "id": "59a56699-c31d-41c6-9fd6-6eeb4ca99974",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Network Security Group",
+                  "subTarget": "NSG",
+                  "style": "link"
+                },
+                {
+                  "id": "074d9a99-249d-4282-af5d-7d4841bd6c5a",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Network Watcher",
+                  "subTarget": "NWW",
+                  "style": "link"
+                },
+                {
+                  "id": "37e34bb1-fa9c-444a-ad7c-766aaf5943ef",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Private Endpoint",
+                  "subTarget": "PE",
+                  "style": "link"
+                },
+                {
+                  "id": "45a51132-eb06-40b0-acae-0a4a2a8eecf3",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Public IP",
+                  "subTarget": "PublicIP",
+                  "style": "link"
+                },
+                {
+                  "id": "b2a9720d-e244-4c12-b9f9-e0480638d84c",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Route Table",
+                  "subTarget": "UDR",
+                  "style": "link"
+                },
+                {
+                  "id": "59cb909a-772a-42fc-8ff5-b74361d99e3b",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Traffic Manager",
+                  "subTarget": "TrafficManager",
+                  "style": "link"
+                },
+                {
+                  "id": "be000935-2c31-4f5d-861e-c88ea1ce13f4",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Virtual Networks",
+                  "subTarget": "VNet",
+                  "style": "link"
+                },
+                {
+                  "id": "7c95b7e6-e887-41cd-ad93-54e34f5191cd",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "VPN Gateway",
+                  "subTarget": "VPNGW",
+                  "style": "link"
+                },
+                {
+                  "id": "8ee203ad-30c9-47bf-85f7-10dc00e1e0e1",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Web Application Firewall",
+                  "subTarget": "WAF",
+                  "style": "link"
+                }
+              ]
+            },
+            "name": "Networking Tabs"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// This query will return all Application Gateways that do not have autoscale enabled or have a min capacity of 1\r\nresources\r\n| where type =~ \"microsoft.network/applicationGateways\"\r\n| where isnull(properties.autoscaleConfiguration) or properties.autoscaleConfiguration.minCapacity <= 1\r\n| project recommendationId = \"agw-1\", name, id, param1 = \"autoScaleConfiguration: isNull or MinCapacity <= 1\"\r\n| order by id asc",
+              "size": 0,
+              "title": "AGW-1 - Ensure autoscaling is used with a minimum of 2 instance",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "AppGW"
+            },
+            "name": "AGW-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// This query will return all Application Gateways that do not have WAF enabled\r\nResources\r\n| where type =~ \"microsoft.network/applicationGateways\"\r\n| where properties.firewallpolicy != \"\"\r\n| project recommendationId = \"agw-3\", name, id, param1 = \"webApplicationFirewallConfiguration: isNull\"\r\n| order by id asc",
+              "size": 0,
+              "title": "AGW-3 - Enable Web Application Firewall policies",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "AppGW"
+            },
+            "name": "AGW-3"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Goal: Show any ExpressRoute circuit where one of the connections is not configured (i.e. no IP)\r\nResources\r\n| where type =~ 'Microsoft.Network/expressRouteCircuits'\r\n| where properties.value[0].provisioningState != 'Succeeded' or properties.value[1].provisioningState != 'Succeeded'\r\n| where not(properties.peerings[0].properties.primaryPeerAddressPrefix != \"null\" and  properties.peerings[0].properties.secondaryPeerAddressPrefix != \"null\")\r\n| project recommendationId = \"erc-1\", name, id, tags, param1 = strcat(\"Peer1_IP: \",properties.peerings[0].properties.primaryPeerAddressPrefix), param2=strcat(\"Peer2_IP: \", properties.peerings[0].properties.secondaryPeerAddressPrefix)\r\n| order by id asc",
+              "size": 0,
+              "title": "ERC-1 - Ensure both connections of an ExpressRoute circuit are configured and active",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ERCircuits"
+            },
+            "name": "ERC-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// For all VNGs of type ExpressRoute, show any that do not have AZ in the SKU tier\r\nresources\r\n| where type =~ \"Microsoft.Network/virtualNetworkGateways\"\r\n| where properties.gatewayType == \"ExpressRoute\"\r\n| where properties.sku.tier !contains 'AZ'\r\n| project recommendationId = \"ergw-1\", name, id, param1= strcat(\"sku-tier: \" , properties.sku.tier), param2=location\r\n| order by id asc",
+              "size": 0,
+              "title": "ERG-1 - Use Zone-redundant gateway SKUs",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ERGW"
+            },
+            "name": "ERG-1"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "Under-Development",
+              "style": "info"
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "Firewall"
+            },
+            "name": "FW Info"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "Under-Development",
+              "style": "info"
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "FrontDoor"
+            },
+            "name": "Front Door Info"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "No Queries",
+              "style": "info"
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "GeneralNW"
+            },
+            "name": "General NW Info"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all LoadBalancers which only have 1 backend pool defined or only 1 VM in the backend pool\r\nresources\r\n| where type =~ 'Microsoft.Network/loadBalancers'\r\n| extend bep = properties.backendAddressPools\r\n| extend BackEndPools = array_length(bep)\r\n| where BackEndPools == 0\r\n| project recommendationId = \"lb-2\", name, id, Param1=BackEndPools, Param2=0\r\n| union (resources\r\n        | where type =~ 'Microsoft.Network/loadBalancers'\r\n        | extend bep = properties.backendAddressPools\r\n        | extend BackEndPools = array_length(bep)\r\n        | mv-expand bip = properties.backendAddressPools\r\n        | extend BackendAddresses = array_length(bip.properties.loadBalancerBackendAddresses)\r\n        | where BackendAddresses <= 1\r\n        | project recommendationId = \"lb-2\", name, id, Param1=BackEndPools, Param2=BackendAddresses)",
+              "size": 0,
+              "title": "LB-2 - Ensure the Backend Pool contains at least two instances",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "LB"
+            },
+            "name": "LB-2"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all LoadBalancers with Outbound rules configured\r\nresources\r\n| where type =~ 'Microsoft.Network/loadBalancers'\r\n| extend outboundRules = array_length(properties.outboundRules)\r\n| where outboundRules > 0\r\n| project recommendationId = \"lb-3\", name, id, Param1 = \"outboundRules: >=1\"",
+              "size": 0,
+              "title": "LB-3 - Use NAT Gateway instead of Outbound Rules for Production Workloads",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "LB"
+            },
+            "name": "LB-3"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all LoadBalancers with with regional or zonal public IP Addresses\r\nresources\r\n| where type == \"microsoft.network/loadbalancers\"\r\n| where tolower(sku.name) != 'basic'\r\n| mv-expand feIPconfigs = properties.frontendIPConfigurations\r\n| extend\r\n    feConfigName = (feIPconfigs.name),\r\n    PrivateSubnetId = toupper(feIPconfigs.properties.subnet.id),\r\n    PrivateIPZones = feIPconfigs.zones,\r\n    PIPid = toupper(feIPconfigs.properties.publicIPAddress.id),\r\n    JoinID = toupper(id)\r\n| where isnotempty(PrivateSubnetId)\r\n| where isnull(PrivateIPZones) or array_length(PrivateIPZones) < 2\r\n| project name, feConfigName, id\r\n| union (resources\r\n    | where type == \"microsoft.network/loadbalancers\"\r\n    | where tolower(sku.name) != 'basic'\r\n    | mv-expand feIPconfigs = properties.frontendIPConfigurations\r\n    | extend\r\n        feConfigName = (feIPconfigs.name),\r\n        PIPid = toupper(feIPconfigs.properties.publicIPAddress.id),\r\n        JoinID = toupper(id)\r\n    | where isnotempty(PIPid)\r\n    | join kind=innerunique (\r\n        resources\r\n        | where type == \"microsoft.network/publicipaddresses\"\r\n        | where isnull(zones) or array_length(zones) < 2\r\n        | extend\r\n            LBid = toupper(substring(properties.ipConfiguration.id, 0, indexof(properties.ipConfiguration.id, '/frontendIPConfigurations'))),\r\n            InnerID = toupper(id)\r\n    ) on $left.PIPid == $right.InnerID)\r\n| project recommendationId = \"lb-4\", name, id, param1=\"Zones: No Zone or Zonal\", param2=strcat(\"Frontend IP Configuration:\", \" \", feConfigName)",
+              "size": 0,
+              "title": "LB-4 - Ensure Standard Load Balancer is zone-redundant",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "LB"
+            },
+            "name": "LB-4"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// This query will return all NSGs that have NO security rules\r\nresources\r\n| where type =~ \"microsoft.network/networksecuritygroups\"\r\n| extend sr = string_size(properties.securityRules)\r\n| where sr <=2 or isnull(properties.securityRules)\r\n| project recommendationId = \"nsg-5\", name, id",
+              "size": 0,
+              "title": "NSG-5 - The NSG only has Default Security Rules, make sure to configure the necessary rules",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "NSG"
+            },
+            "name": "NSG-5"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// This query will return all locations that do not have a Network Watcher deployed\r\nresources\r\n| where location != \"global\"\r\n| union (Resources\r\n    | where type =~ \"microsoft.network/networkwatchers\")\r\n| summarize NetworkWatcherCount = countif(type =~ 'Microsoft.Network/networkWatchers') by location\r\n| where NetworkWatcherCount == 0\r\n| project recommendationId = \"nw-1\", name=location, id=\"n/a\", param1 = strcat(\"LocationMisingNetworkWatcher:\", location)",
+              "size": 0,
+              "title": "NW-1 - Deploy Network Watcher in all regions where you have networking services",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "NWW"
+            },
+            "name": "NW-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// This query will return all Network Watcher Flow Logs that are not enabled or in a succeeded state\r\nresources\r\n| where type =~ \"microsoft.network/networkwatchers/flowlogs\" and isnotnull(properties)\r\n| extend targetResourceId = tostring(properties.targetResourceId)\r\n| extend status = iff(properties.enabled =~ 'true', \"Enabled\", \"Disabled\")\r\n| extend provisioningState = tostring(properties.provisioningState)\r\n| extend flowLogType = iff(properties.targetResourceId contains \"Microsoft.Network/virtualNetworks\", 'Virtual network', 'Network security group')\r\n| where provisioningState != \"Succeeded\" or status != \"Enabled\"\r\n| project recommendationId = \"nw-2\", name, id, param1 = strcat(\"provisioningState:\", provisioningState), param2=strcat(\"Status:\", status), param3=strcat(\"targetResourceId:\",targetResourceId), param4=strcat(\"flowLogType:\",flowLogType)",
+              "size": 0,
+              "title": "NW-2 - Fix Flow Log configurations in Failed state or Disabled Status",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "NWW"
+            },
+            "name": "NW-2"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// This query will return all Private Endpoints that are not in a Succeeded state\r\nresources\r\n| where type =~ \"microsoft.network/privateendpoints\"\r\n| where properties.provisioningState != \"Succeeded\" or properties.privateLinkServiceConnections[0].properties.provisioningState != \"Succeeded\"\r\n| project recommendationId = \"pep-1\", name, id, param1 = strcat(\"provisioningState: \", tostring(properties.provisioningState)), param2 = strcat(\"provisioningState: \", tostring(properties.privateLinkServiceConnections[0].properties.provisioningState))",
+              "size": 0,
+              "title": "PEP-1 - Resolve issues with Private Endpoints in non Succeeded connection state",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "PE"
+            },
+            "name": "PEP-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph query\r\n// Lists VMs with PIPs\r\nresources\r\n| where type =~ 'Microsoft.Network/publicIPAddresses'\r\n| where tostring(properties.ipConfiguration.id) contains \"microsoft.network/networkinterfaces\"\r\n| project recommendationid=\"pip-2\", name, id, param1=strcat(\"Migrate from instance IP to NAT Gateway\")",
+              "size": 0,
+              "title": "PIP-2 - Use NAT gateway for outbound connectivity to avoid SNAT Exhaustion",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "PublicIP"
+            },
+            "name": "PIP-2"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "No Queries",
+              "style": "info"
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "UDR"
+            },
+            "name": "Route Table Info"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "Resources\r\n| where type == 'microsoft.network/trafficmanagerprofiles'\r\n| extend endpoints = properties.endpoints\r\n| mv-expand endpoint = endpoints\r\n| extend endpointName = endpoint.name\r\n| extend endpointLocation = endpoint.properties.endpointLocation\r\n| extend ttl = toint(properties.dnsConfig.ttl)\r\n| project recommendationId=\"traf-5\", name, id, endpointName, properties.trafficRoutingMethod, endpointLocation,ttl,GeoMapping = tostring(endpoint.properties.geoMapping)",
+              "size": 0,
+              "title": "TRAF-5 - Ensure endpoint configured to “(All World)” for geographic profiles",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "TrafficManager"
+            },
+            "name": "TRAF-5"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find Subnets without NSG associated\r\nresources\r\n| where type =~ 'Microsoft.Network/virtualnetworks'\r\n| mv-expand subnets = properties.subnets\r\n| extend sn = string_size(subnets.properties.networkSecurityGroup)\r\n| where sn == 0\r\n| project recommendationId = \"vnet-1\", name, id, tags, subnets.name, NSG=\"NSG: False\"",
+              "size": 0,
+              "title": "VNET-1 - All Subnets should have a Network Security Group associated",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VNet"
+            },
+            "name": "VNET-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find Subnets without NSG associated\r\nresources\r\n| where type =~ 'Microsoft.Network/virtualNetworks'\r\n| where isnull(properties.enableDdosProtection) or properties.enableDdosProtection contains \"false\"\r\n| project recommendationId = \"vnet-2\", name, id, tags, DdosProtection=properties.enableDdosProtection",
+              "size": 0,
+              "title": "VNET-2 - Use Azure DDoS Standard Protection Plans to protect all public endpoints hosted within customer Virtual Networks",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VNet"
+            },
+            "name": "VNET-2"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// For all VNGs of type Vpn, show any that do not have AZ in the SKU tier\r\nresources\r\n| where type =~ \"Microsoft.Network/virtualNetworkGateways\"\r\n| where properties.gatewayType == \"Vpn\"\r\n| where properties.sku.tier !contains 'AZ'\r\n| project recommendationId = \"vpng-1\", name, id, param1= strcat(\"sku-tier: \" , properties.sku.tier), param2=location\r\n| order by id asc",
+              "size": 0,
+              "title": "VPNG-1 - Choose a Zone-redundant gateway",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VPNGW"
+            },
+            "name": "VPNG-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "resources\r\n| where type =~ 'Microsoft.Network/virtualNetworkGateways'\r\n| where properties.gatewayType =~ \"vpn\"\r\n| extend gatewayType = properties.gatewayType, vpnType = properties.vpnType, connections = properties.connections, activeactive=properties.activeActive\r\n| where activeactive == false\r\n| project recommendationId = \"vpng-2\", name, id",
+              "size": 0,
+              "title": "VPNG-2 - Plan for Active-Active mode",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VPNGW"
+            },
+            "name": "VPNG-2"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "Under-Development",
+              "style": "info"
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "WAF"
+            },
+            "name": "WAF Info"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedCategory",
+        "comparison": "isEqualTo",
+        "value": "Networking"
+      },
+      "name": "Networking"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 11,
+            "content": {
+              "version": "LinkItem/1.0",
+              "style": "tabs",
+              "links": [
+                {
+                  "id": "7a3208fd-fe77-4797-9abc-4697488fedfd",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Key Vault",
+                  "subTarget": "KV",
+                  "style": "link"
+                }
+              ]
+            },
+            "name": "Security"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// This Resource Graph query will return all Key Vaults that do not have soft delete enabled.\r\nresources\r\n| where type == \"microsoft.keyvault/vaults\"\r\n| where isnull(properties.enableSoftDelete) or properties.enableSoftDelete != \"true\"\r\n| project recommendationId = \"kv-1\", name, id, tags, softDeleteEnabled = \"disabled\"",
+              "size": 0,
+              "title": "KV-1 - Key vaults should have soft delete enabled",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "KV"
+            },
+            "name": "KV-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// This resource graph query will return all Key Vaults that do not have Purge Protection enabled.\r\nresources\r\n| where type == \"microsoft.keyvault/vaults\"\r\n| where isnull(properties.enablePurgeProtection) or properties.enablePurgeProtection != \"true\"\r\n| project recommendationId = \"kv-2\", name, id, tags, enablePurgeProtection = \"disabled\"",
+              "size": 0,
+              "title": "KV-2 - Key vaults should have purge protection enabled",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "KV"
+            },
+            "name": "KV-2"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedCategory",
+        "comparison": "isEqualTo",
+        "value": "Security"
+      },
+      "name": "Security"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 1,
+            "content": {
+              "json": "No Services",
+              "style": "info"
+            },
+            "name": "Specialized Workloads Info"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedCategory",
+        "comparison": "isEqualTo",
+        "value": "SpecializedWorkloads"
+      },
+      "name": "Specialized Workloads"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 11,
+            "content": {
+              "version": "LinkItem/1.0",
+              "style": "tabs",
+              "links": [
+                {
+                  "id": "831d54be-136e-4704-81a6-ecb9c38df5c9",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Azure Netapp Files",
+                  "subTarget": "ANF",
+                  "style": "link"
+                },
+                {
+                  "id": "6eca9dee-9396-44de-8588-0c5671755c52",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Storage Account",
+                  "subTarget": "StorageAccount",
+                  "style": "link"
+                }
+              ]
+            },
+            "name": "Storage Tabs"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// This Resource Graph query will return all NetApp Volumes without Cross-Region Replication.\r\nresources\r\n| where type =~ \"microsoft.netapp/netappaccounts/capacitypools/volumes\"\r\n| extend NetAC0 = tostring(split(name,'/')[0])\r\n| join kind=leftouter (resources\r\n    | where type =~ \"microsoft.netapp/netappaccounts/capacitypools/volumes\"\r\n    | extend NetAC1 = tostring(split(name,'/')[0])\r\n    | project id,NetAC1,remid=tostring(properties.dataProtection.replication.remoteVolumeResourceId)) on $left.id == $right.remid\r\n| where properties.volumeType != 'DataProtection' and NetAC0 == NetAC1\r\n| project recommendationId = \"ANF-1\", name, id, tags",
+              "size": 0,
+              "title": "ANF-1 - Enable Cross-region replication of Azure NetApp Files volumes",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ANF"
+            },
+            "name": "ANF-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// This Resource Graph query will return all NetApp Volumes without AVzone defined.\r\nresources\r\n| where type =~ \"microsoft.netapp/netappaccounts/capacitypools/volumes\"\r\n| where zones == \"[]\"\r\n| project recommendationId = \"ANF-2\", name, id, tags",
+              "size": 0,
+              "title": "ANF-2 - Use availability zones for high availability in Azure NetApp Files",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ANF"
+            },
+            "name": "ANF-2"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// This Resource Graph query will return all NetApp Volumes without Network Feature Standard.\r\nresources\r\n| where type =~ \"microsoft.netapp/netappaccounts/capacitypools/volumes\"\r\n| where properties.networkFeatures != \"Standard\"\r\n| project recommendationId = \"ANF-4\", name, id, tags",
+              "size": 0,
+              "title": "ANF-4 - Use standard network feature for Production in Azure NetApp Files",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ANF"
+            },
+            "name": "ANF-4"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// This Resource Graph query will return all NetApp Volumes without Cross-Zone Replication.\r\nresources\r\n| where type =~ \"microsoft.netapp/netappaccounts/capacitypools/volumes\"\r\n| extend NetAC0 = tostring(split(name,'/')[0])\r\n| join kind=leftouter (resources\r\n    | where type =~ \"microsoft.netapp/netappaccounts/capacitypools/volumes\"\r\n    | extend NetAC1 = tostring(split(name,'/')[0])\r\n    | project id,NetAC1,remid=tostring(properties.dataProtection.replication.remoteVolumeResourceId)) on $left.id == $right.remid\r\n| where properties.volumeType != 'DataProtection' and NetAC0 != NetAC1\r\n| project recommendationId = \"ANF-5\", name, id, tags",
+              "size": 0,
+              "title": "ANF-5 - Enable Cross-zone replication of Azure NetApp Files volumes",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ANF"
+            },
+            "name": "ANF-5"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all Azure classic Storage Account\r\nresources\r\n| where type =~ 'microsoft.classicstorage/storageaccounts'\r\n| project recommendationId = 'st-2', name, id, param1=type",
+              "size": 0,
+              "title": "ST-2 - Do not use classic Storage Account",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "StorageAccount"
+            },
+            "name": "ST-2"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all Azure Storage Accounts, that do not have an access tier set\r\nresources\r\n| where type =~'microsoft.storage/storageaccounts'\r\n| where isnull(properties.accessTier)\r\n| project recommendationId = 'st-3', name, id, param1=\"not defined - GeneralPurpose V1\"",
+              "size": 0,
+              "title": "ST-3 - Ensure Performance tier is set as per workload",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "StorageAccount"
+            },
+            "name": "ST-3"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedCategory",
+        "comparison": "isEqualTo",
+        "value": "Storage"
+      },
+      "name": "Storage"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 11,
+            "content": {
+              "version": "LinkItem/1.0",
+              "style": "tabs",
+              "links": [
+                {
+                  "id": "c3c3c83a-9ea2-4877-8e33-bbbe6e66b101",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "App Service Plan",
+                  "subTarget": "AppServicePlan",
+                  "style": "link"
+                },
+                {
+                  "id": "386f0075-7a39-4528-bbcb-373cd09d4fcb",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "SignalR",
+                  "subTarget": "SignalR",
+                  "style": "link"
+                },
+                {
+                  "id": "bc6b1e82-ca67-4312-bd22-150721a9df20",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Web App",
+                  "subTarget": "WebApp",
+                  "style": "link"
+                }
+              ]
+            },
+            "name": "Web Tabs"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Azure Resource Graph\r\n// App Service Plans that are not setup to use standard or premium SKUs.\r\n// TODO: Extend this query to show automatic scaling or App level automatic scale\r\nresources\r\n| where type =~ \"microsoft.insights/autoscalesettings\"\r\n| where properties.targetResourceUri contains \"microsoft.web/serverfarms\"\r\n| project AppServicePlan = split(properties.targetResourceUri, '/')[8], ResourceGroup = split(properties.targetResourceUri, '/')[4],id=properties.targetResourceUri\r\n| project recommendationid=\"asp-5\", [\"name\"]=AppServicePlan, [\"id\"]=id",
+              "size": 0,
+              "title": "ASP-5 - Enable Autoscale/Automatic scaling to ensure adequate resources are available to service requests",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "AppServicePlan"
+            },
+            "name": "ASP-5"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find SignalR instances that are not configured with the Premium tier\r\nresources\r\n| where type == \"microsoft.signalrservice/signalr\"\r\n| where sku.tier != \"Premium\"\r\n| project recommendationId = \"sigr-1\", name, id, param1 = \"AvailabilityZones: Single Zone\"\r\n| order by id asc",
+              "size": 0,
+              "title": "SIGR-1 - Enable zone redundancy for SignalR",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "SignalR"
+            },
+            "name": "SIGR-1"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "Under-Development",
+              "style": "info"
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "WebApp"
+            },
+            "name": "Web App Info"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedCategory",
+        "comparison": "isEqualTo",
+        "value": "Web"
+      },
+      "name": "Web"
+    }
+  ],
+  "fallbackResourceIds": [
+    "Azure Monitor"
+  ],
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
