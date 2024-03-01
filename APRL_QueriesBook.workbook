@@ -79,22 +79,6 @@
             "style": "link"
           },
           {
-            "id": "a7252cba-2cdc-47db-914c-eed87e029373",
-            "cellValue": "selectedCategory",
-            "linkTarget": "parameter",
-            "linkLabel": "General",
-            "subTarget": "General",
-            "style": "link"
-          },
-          {
-            "id": "3f0650bd-0d31-4bab-a195-1a62e8475299",
-            "cellValue": "selectedCategory",
-            "linkTarget": "parameter",
-            "linkLabel": "Hybrid",
-            "subTarget": "Hybrid",
-            "style": "link"
-          },
-          {
             "id": "7ba3e339-bfad-4d10-ac62-8266fd9998d8",
             "cellValue": "selectedCategory",
             "linkTarget": "parameter",
@@ -785,29 +769,6 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Find all VMs with Accelerated Networking Enabled - GuestOS admins should validate the drivers for these VMs. This is not an indication of an issue as the query does not have access to the GuestOS.\r\nResources\r\n| where type =~ 'Microsoft.Compute/virtualMachines'\r\n| mv-expand nic=properties.networkProfile.networkInterfaces\r\n| project name, id, nicName = tostring(split(tostring(nic.id), '/')[8]), tags\r\n| join kind=inner (\r\n    Resources\r\n    | where type =~ 'Microsoft.Network/networkInterfaces'\r\n    | where properties.enableAcceleratedNetworking == true\r\n    | project nicName = tostring(split(tostring(id), '/')[8])\r\n) on nicName\r\n| project recommendationId = \"vm-11\", name, id, tags\r\n| order by id asc",
-              "size": 0,
-              "showAnalytics": true,
-              "title": "VM-11 - When AccelNet is enabled, you must manually update the GuestOS NIC driver",
-              "noDataMessageStyle": 3,
-              "showExportToExcel": true,
-              "queryType": 1,
-              "resourceType": "microsoft.resourcegraph/resources",
-              "crossComponentResources": [
-                "{Subscriptions}"
-              ]
-            },
-            "conditionalVisibility": {
-              "parameterName": "selectedService",
-              "comparison": "isEqualTo",
-              "value": "VM"
-            },
-            "name": "VM-11"
-          },
-          {
-            "type": 3,
-            "content": {
-              "version": "KqlItem/1.0",
               "query": "// Azure Resource Graph Query\r\n// Find all VMs with PublicIPs directly associated with them\r\nResources\r\n| where type =~ 'Microsoft.Compute/virtualMachines'\r\n| where isnotnull(properties.networkProfile.networkInterfaces)\r\n| mv-expand nic=properties.networkProfile.networkInterfaces\r\n| project name, id, tags, nicId = nic.id\r\n| extend nicId = tostring(nicId)\r\n| join kind=inner (\r\n    Resources\r\n    | where type =~ 'Microsoft.Network/networkInterfaces'\r\n    | where isnotnull(properties.ipConfigurations)\r\n    | mv-expand ipconfig=properties.ipConfigurations\r\n    | extend publicIp = tostring(ipconfig.properties.publicIPAddress.id)\r\n    | where publicIp != \"\"\r\n    | project name, nicId = tostring(id), publicIp\r\n) on nicId\r\n| project recommendationId = \"vm-12\", name, id, tags\r\n| order by id asc",
               "size": 0,
               "showAnalytics": true,
@@ -880,7 +841,7 @@
               "query": "// Azure Resource Graph Query\r\n// Find all VM NICs that have DNS Server settings configured in any of the NICs\r\nResources\r\n| where type =~ 'Microsoft.Compute/virtualMachines'\r\n| where isnotnull(properties.networkProfile.networkInterfaces)\r\n| mv-expand nic=properties.networkProfile.networkInterfaces\r\n| project name, id, tags, nicId = nic.id\r\n| extend nicId = tostring(nicId)\r\n| join kind=inner (\r\n    Resources\r\n    | where type =~ 'Microsoft.Network/networkInterfaces'\r\n    | project name, id, dnsServers = properties.dnsSettings.dnsServers\r\n    | extend hasDns = array_length(dnsServers) >= 1\r\n    | where hasDns != 0\r\n    | project name, nicId = tostring(id)\r\n) on nicId\r\n| project recommendationId = \"vm-15\", name, id, tags\r\n| order by id asc",
               "size": 0,
               "showAnalytics": true,
-              "title": "VM-15 - DNS Servers should be configured in the Virtual Network level",
+              "title": "VM-15 - Customer DNS Servers should be configured in the Virtual Network level",
               "noDataMessageStyle": 3,
               "showExportToExcel": true,
               "queryType": 1,
@@ -1033,6 +994,29 @@
               "value": "VM"
             },
             "name": "VM-22"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all VMs that have an attached disk that is not in the Premium or Ultra sku tier.\r\n\r\nresources\r\n| where type =~ 'Microsoft.Compute/virtualMachines'\r\n| extend lname = tolower(name)\r\n| join kind=leftouter(resources\r\n    | where type =~ 'Microsoft.Compute/disks'\r\n    | where not(sku.tier =~ 'Premium') and not(sku.tier =~ 'Ultra')\r\n    | extend lname = tolower(tostring(split(managedBy, '/')[8]))\r\n    | project lname, name\r\n    | summarize disks = make_list(name) by lname) on lname\r\n| where isnotnull(disks)\r\n| project recommendationId = \"vm-24\", name, id, tags, param1=strcat(\"AffectedDisks: \", disks)",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "VM-24 - Mission Critical Workloads should be using Premium or Ultra Disks",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VM"
+            },
+            "name": "VM-24"
           }
         ]
       },
@@ -1079,7 +1063,7 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Query AKS clusters not using zones\r\nresources\r\n| where type == \"microsoft.containerservice/managedclusters\"\r\n| extend zones = tostring(parse_json(properties.agentPoolProfiles[0].availabilityZones))\r\n| where isempty(zones)\r\n| project recommendationid=\"aks-1\", name, id, tags, param1=strcat(\"zones: \", zones)",
+              "query": "// Azure Resource Graph Query\r\n// Returns AKS clusters that do not have any availability zones enabled\r\nresources\r\n| where type == 'microsoft.containerservice/managedclusters'\r\n| project id, name, location, properties.agentPoolProfiles\r\n| mv-expand properties_agentPoolProfiles\r\n| where isempty(array_length(properties_agentPoolProfiles.availabilityZones))\r\n| project recommendationId=\"aks-1\", id, name, param1=strcat(\"nodePoolName: \", properties_agentPoolProfiles.name), param2=strcat(\"orchestratorVersion: \", properties_agentPoolProfiles.orchestratorVersion), param3=strcat(\"currentOrchestratorVersion: \", properties_agentPoolProfiles.currentOrchestratorVersion), param4=strcat(\"numberOfZones: \", iff(isempty(array_length(properties_agentPoolProfiles.availabilityZones)), 0, array_length(properties_agentPoolProfiles.availabilityZones)))",
               "size": 0,
               "showAnalytics": true,
               "title": "AKS-1 - Deploy AKS cluster across availability zones",
@@ -1102,10 +1086,10 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Find AKS clusters not using taints.\r\nresources\r\n| where type == \"microsoft.containerservice/managedclusters\"\r\n| extend taint = tostring(parse_json(properties.agentPoolProfiles[1].nodeTaints))\r\n| where isempty(taint)\r\n| project recommendationid=\"aks-2\", name, id, tags, param1=strcat(\"taint: \", taint)",
+              "query": "// Azure Resource Graph Query\r\n// Returns each AKS cluster with nodepools that do not have taints set\r\nresources\r\n| where type == \"microsoft.containerservice/managedclusters\"\r\n| mv-expand agentPoolProfile = properties.agentPoolProfiles\r\n| extend taint = tostring(parse_json(agentPoolProfile.nodeTaints))\r\n| extend nodePool = tostring(parse_json(agentPoolProfile.name))\r\n| where isempty(taint)\r\n| project recommendationid=\"aks-2\", id, name, param1=strcat(\"nodepoolName: \", nodePool), param2=strcat(\"taint: \", iff(isempty(taint), \"None\", taint))",
               "size": 0,
               "showAnalytics": true,
-              "title": "AKS-2 - Isolate system pods",
+              "title": "AKS-2 - Isolate system and application pods",
               "noDataMessageStyle": 3,
               "showExportToExcel": true,
               "queryType": 1,
@@ -1174,7 +1158,7 @@
               "query": "// Azure Resource Graph Query\r\n// Find AKS clusters with auto-scaling disabled\r\nResources\r\n| where type == \"microsoft.containerservice/managedclusters\"\r\n| extend autoScaling = tostring (parse_json(properties.agentPoolProfiles.[0].enableAutoScaling))\r\n| where autoScaling == \"false\"\r\n| project recommendationId=\"aks-5\", name, id, tags, param1=strcat(\"autoScaling :\", autoScaling)",
               "size": 0,
               "showAnalytics": true,
-              "title": "AKS-5 - Enable the cluster autoscaler on an existing cluster",
+              "title": "AKS-5 - Enable the cluster auto-scaler on an existing cluster",
               "noDataMessageStyle": 3,
               "showExportToExcel": true,
               "queryType": 1,
@@ -1194,10 +1178,10 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Returns AKS clusters that do not have any availability zones enabled\r\nresources\r\n| where type == 'microsoft.containerservice/managedclusters'\r\n| project id, name, location, properties.agentPoolProfiles\r\n| mv-expand properties_agentPoolProfiles\r\n| where isempty(array_length(properties_agentPoolProfiles.availabilityZones))\r\n| project recommendationId=\"aks-10\", id, name, param1=strcat(\"nodePoolName: \", properties_agentPoolProfiles.name), param2=strcat(\"orchestratorVersion: \", properties_agentPoolProfiles.orchestratorVersion), param3=strcat(\"currentOrchestratorVersion: \", properties_agentPoolProfiles.currentOrchestratorVersion), param4=strcat(\"numberOfZones: \", iff(isempty(array_length(properties_agentPoolProfiles.availabilityZones)), 0, array_length(properties_agentPoolProfiles.availabilityZones)))",
+              "query": "// Azure Resource Graph Query\r\n// Find AKS clusters that do not have backup enabled\r\n\r\nresources\r\n| where type =~ 'Microsoft.ContainerService/managedClusters'\r\n| extend lname = tolower(name)\r\n| join kind=leftouter(recoveryservicesresources\r\n    | where type =~ 'microsoft.dataprotection/backupvaults/backupinstances'\r\n    | extend lname = tolower(tostring(split(properties.dataSourceInfo.resourceID, '/')[8]))\r\n    | extend protectionState = properties.currentProtectionState\r\n    | project lname, protectionState) on lname\r\n| where protectionState != 'ProtectionConfigured'\r\n| extend param1 = iif(isnull(protectionState), 'Protection Not Configured', strcat('Protection State: ', protectionState))\r\n| project recommendationID = \"aks-6\", name, id, tags, param1",
               "size": 0,
               "showAnalytics": true,
-              "title": "AKS-10 - Deploy AKS across availability zones",
+              "title": "AKS-6 - Back up Azure Kubernetes Service",
               "noDataMessageStyle": 3,
               "showExportToExcel": true,
               "queryType": 1,
@@ -1211,16 +1195,16 @@
               "comparison": "isEqualTo",
               "value": "AKS"
             },
-            "name": "AKS-10"
+            "name": "AKS-6"
           },
           {
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Returns AKS clusters where local accounts are not disabled\r\nresources\r\n|  where type == \"microsoft.containerservice/managedclusters\"\r\n|  extend disableLocalAccounts = tostring (parse_json(properties.disableLocalAccounts))\r\n|  where disableLocalAccounts == \"false\"\r\n|  project recommendationId=\"aks-12\", id, name, param1=strcat(\"localAccountsDisabled: \", disableLocalAccounts)",
+              "query": "// Azure Resource Graph Query\r\n// Returns all AKS clusters not running on the Standard tier\r\nresources\r\n| where type == \"microsoft.containerservice/managedclusters\"\r\n| where sku.tier != \"Standard\"\r\n| project recommendationId=\"aks-12\", id, name, param1=strcat(\"skuName: \", sku.name), param2=strcat(\"skuTier: \", sku.tier)",
               "size": 0,
               "showAnalytics": true,
-              "title": "AKS-12 - Disable Local Account Access to AKS",
+              "title": "AKS-12 - Update AKS tier to Standard",
               "noDataMessageStyle": 3,
               "showExportToExcel": true,
               "queryType": 1,
@@ -1240,10 +1224,10 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Returns each AKS cluster with nodepools that do not have taints set\r\nresources\r\n| where type == \"microsoft.containerservice/managedclusters\"\r\n| mv-expand agentPoolProfile = properties.agentPoolProfiles\r\n| extend taint = tostring(parse_json(agentPoolProfile.nodeTaints))\r\n| extend nodePool = tostring(parse_json(agentPoolProfile.name))\r\n| where isempty(taint)\r\n| project recommendationid=\"aks-17\", id, name, param1=strcat(\"nodepoolName: \", nodePool), param2=strcat(\"taint: \", iff(isempty(taint), \"None\", taint))",
+              "query": "// Azure Resource Graph Query\r\n// Returns AKS clusters where either Azure Monitor is not enabled and/or Container Insights is not enabled\r\nresources\r\n|  where type == \"microsoft.containerservice/managedclusters\"\r\n|  extend azureMonitor = tostring(parse_json(properties.azureMonitorProfile.metrics.enabled))\r\n|  extend insights = tostring(parse_json(properties.addonProfiles.omsagent.enabled))\r\n|  where isempty(azureMonitor) or isempty(insights)\r\n|  project recommendationId=\"aks-13\",id, name, param1=strcat(\"azureMonitorProfileEnabled: \", iff(isempty(azureMonitor), \"false\", azureMonitor)), param2=strcat(\"containerInsightsEnabled: \", iff(isempty(insights), \"false\", insights))",
               "size": 0,
               "showAnalytics": true,
-              "title": "AKS-17 - Isolate application (User) pods",
+              "title": "AKS-13 - Enable AKS Monitoring",
               "noDataMessageStyle": 3,
               "showExportToExcel": true,
               "queryType": 1,
@@ -1257,16 +1241,16 @@
               "comparison": "isEqualTo",
               "value": "AKS"
             },
-            "name": "AKS-17"
+            "name": "AKS-13"
           },
           {
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Returns all AKS clusters not running on the Standard tier\r\nresources\r\n| where type == \"microsoft.containerservice/managedclusters\"\r\n| where sku.tier != \"Standard\"\r\n| project recommendationId=\"aks-19\", id, name, param1=strcat(\"skuName: \", sku.name), param2=strcat(\"skuTier: \", sku.tier)",
+              "query": "// Azure Resource Graph Query\r\n// Returns AKS clusters where GitOps is not enabled\r\nresources\r\n|  where type == \"microsoft.containerservice/managedclusters\"\r\n|  extend gitops = tostring (parse_json(properties.addOnProfiles.gitops.enabled))\r\n|  where isempty(gitops)\r\n|  project recommendationId=\"aks-16\", id, name, param1=strcat(\"gitopsEnabled: \", \"false\")",
               "size": 0,
               "showAnalytics": true,
-              "title": "AKS-19 - Update AKS tier to Standard",
+              "title": "AKS-16 - Enable GitOps when using DevOps frameworks",
               "noDataMessageStyle": 3,
               "showExportToExcel": true,
               "queryType": 1,
@@ -1280,53 +1264,7 @@
               "comparison": "isEqualTo",
               "value": "AKS"
             },
-            "name": "AKS-19"
-          },
-          {
-            "type": 3,
-            "content": {
-              "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Returns AKS clusters where either Azure Monitor is not enabled and/or Container Insights is not enabled\r\nresources\r\n|  where type == \"microsoft.containerservice/managedclusters\"\r\n|  extend azureMonitor = tostring(parse_json(properties.azureMonitorProfile.metrics.enabled))\r\n|  extend insights = tostring(parse_json(properties.addonProfiles.omsagent.enabled))\r\n|  where isempty(azureMonitor) or isempty(insights)\r\n|  project recommendationId=\"aks-20\",id, name, param1=strcat(\"azureMonitorProfileEnabled: \", iff(isempty(azureMonitor), \"false\", azureMonitor)), param2=strcat(\"containerInsightsEnabled: \", iff(isempty(insights), \"false\", insights))",
-              "size": 0,
-              "showAnalytics": true,
-              "title": "AKS-20 - Enable AKS Monitoring",
-              "noDataMessageStyle": 3,
-              "showExportToExcel": true,
-              "queryType": 1,
-              "resourceType": "microsoft.resourcegraph/resources",
-              "crossComponentResources": [
-                "{Subscriptions}"
-              ]
-            },
-            "conditionalVisibility": {
-              "parameterName": "selectedService",
-              "comparison": "isEqualTo",
-              "value": "AKS"
-            },
-            "name": "AKS-20"
-          },
-          {
-            "type": 3,
-            "content": {
-              "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Returns AKS clusters where GitOps is not enabled\r\nresources\r\n|  where type == \"microsoft.containerservice/managedclusters\"\r\n|  extend gitops = tostring (parse_json(properties.addOnProfiles.gitops.enabled))\r\n|  where isempty(gitops)\r\n|  project recommendationId=\"aks-23\", id, name, param1=strcat(\"gitopsEnabled: \", \"false\")",
-              "size": 0,
-              "showAnalytics": true,
-              "title": "AKS-23 - Enable GitOps when using DevOps frameworks",
-              "noDataMessageStyle": 3,
-              "showExportToExcel": true,
-              "queryType": 1,
-              "resourceType": "microsoft.resourcegraph/resources",
-              "crossComponentResources": [
-                "{Subscriptions}"
-              ]
-            },
-            "conditionalVisibility": {
-              "parameterName": "selectedService",
-              "comparison": "isEqualTo",
-              "value": "AKS"
-            },
-            "name": "AKS-23"
+            "name": "AKS-16"
           },
           {
             "type": 3,
@@ -1396,6 +1334,52 @@
               "value": "ContainerRegistry"
             },
             "name": "CR-3"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// List container registries that contain additional resources within the same resource group.\r\nresources\r\n| where type =~ \"microsoft.containerregistry/registries\"\r\n| project registryName=name, registryId=id, registryTags=tags, resourceGroupId=strcat('/subscriptions/', subscriptionId, '/resourceGroups/', resourceGroup), resourceGroup, subscriptionId\r\n| join kind=inner (\r\n    resources\r\n    | where not(type =~ \"microsoft.containerregistry/registries\")\r\n    | summarize recourceCount=count() by subscriptionId, resourceGroup\r\n    | where recourceCount != 0\r\n) on resourceGroup, subscriptionId\r\n| project recommendationId = \"cr-6\", name=registryName, id=registryId, tags=registryTags, param1=strcat('resourceGroupName:',resourceGroup), param2=strcat('resourceGroupId:',resourceGroupId)",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "CR-6 - Move Container Registry to a dedicated resource group",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ContainerRegistry"
+            },
+            "name": "CR-6"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find all Container Registries that have their retention policy disabled\r\nresources\r\n| where type =~ \"microsoft.containerregistry/registries\"\r\n| where properties.policies.retentionPolicy.status == \"disabled\"\r\n| project recommendationId = \"cr-7\", name, id, tags, param1='retentionPolicy:disabled'\r\n| order by id asc",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "CR-7 - Manage registry size",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ContainerRegistry"
+            },
+            "name": "CR-7"
           },
           {
             "type": 3,
@@ -1504,7 +1488,7 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Provides a list of SQL databases that are not configured for Geo-redundant storage.\r\nresources\r\n| where type == \"microsoft.sql/servers/databases\"\r\n| where  (properties['currentBackupStorageRedundancy'] ) <> 'Geo'\r\n| project recommendationId = \"sqldb-1\", name, id, param1=strcat(\"CurrentGeoRedudancy=\", properties['currentBackupStorageRedundancy'] )",
+              "query": "// Azure Resource Graph Query\r\n// Provides a list of SQL databases that are not configured for Geo-redundant storage.\r\nresources\r\n| where type == \"microsoft.sql/servers/databases\"\r\n| where  (properties['currentBackupStorageRedundancy'] ) <> 'Geo'\r\n| project recommendationId = \"sqldb-1\", name, id, tags, param1=strcat(\"CurrentGeoRedudancy=\", properties['currentBackupStorageRedundancy'] )",
               "size": 0,
               "showAnalytics": true,
               "title": "SQLDB-1 - Use Active Geo Replication to Create a Readable Secondary in Another Region",
@@ -1527,7 +1511,7 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Provides a list of SQL databases that are not configured to use a failover-group.\r\nresources\r\n| where type =~'microsoft.sql/servers/databases'\r\n| where isnull(properties['failoverGroupId'])\r\n| project recommendationId = \"sqldb-2\", name, id, param1= strcat(\"databaseId=\", properties['databaseId'])",
+              "query": "// Azure Resource Graph Query\r\n// Provides a list of SQL databases that are not configured to use a failover-group.\r\nresources\r\n| where type =~'microsoft.sql/servers/databases'\r\n| where isnull(properties['failoverGroupId'])\r\n| project recommendationId = \"sqldb-2\", name, id, tags, param1= strcat(\"databaseId=\", properties['databaseId'])",
               "size": 0,
               "showAnalytics": true,
               "title": "SQLDB-2 - Use Auto Failover Groups that can include one or multiple databases, typically used by the same application",
@@ -1550,7 +1534,7 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "Resources\r\n| where type =~ 'microsoft.sql/servers/databases'\r\n| where tolower(tostring(properties.zoneRedundant))=~'false'\r\n|project recommendationId = \"SQLDB-3\", name, id",
+              "query": "Resources\r\n| where type =~ 'microsoft.sql/servers/databases'\r\n| where tolower(tostring(properties.zoneRedundant))=~'false'\r\n|project recommendationId = \"sqldb-3\", name, id, tags",
               "size": 0,
               "showAnalytics": true,
               "title": "SQLDB-3 - Use a Zone-Redundant Database",
@@ -1573,7 +1557,7 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Provides a list of SQL databases that are not configured for monitoring.\r\nresources\r\n| where type == \"microsoft.insights/metricalerts\"\r\n| mv-expand properties.scopes\r\n| mv-expand properties.criteria.allOf\r\n| project databaseid = properties_scopes, monitoredMetric = properties_criteria_allOf.metricName\r\n| where databaseid contains 'databases'\r\n| summarize monitoredMetrics=make_list(monitoredMetric) by tostring(databaseid)\r\n| join kind=fullouter  (\r\n   resources\r\n  | where type =~ 'microsoft.sql/servers/databases'\r\n  | project databaseid = tolower(id), name\r\n) on databaseid\r\n|where isnull(monitoredMetrics)\r\n|project recommendationId = \"sqldb-5\", name, id=databaseid1, param1=strcat(\"MonitoringMetrics=false\" )",
+              "query": "// Azure Resource Graph Query\r\n// Provides a list of SQL databases that are not configured for monitoring.\r\nresources\r\n| where type == \"microsoft.insights/metricalerts\"\r\n| mv-expand properties.scopes\r\n| mv-expand properties.criteria.allOf\r\n| project databaseid = properties_scopes, monitoredMetric = properties_criteria_allOf.metricName\r\n| where databaseid contains 'databases'\r\n| summarize monitoredMetrics=make_list(monitoredMetric) by tostring(databaseid)\r\n| join kind=fullouter  (\r\n   resources\r\n  | where type =~ 'microsoft.sql/servers/databases'\r\n  | project databaseid = tolower(id), name, tags\r\n) on databaseid\r\n|where isnull(monitoredMetrics)\r\n|project recommendationId = \"sqldb-5\", name, id=databaseid1, param1=strcat(\"MonitoringMetrics=false\" ), tags",
               "size": 0,
               "showAnalytics": true,
               "title": "SQLDB-5 - Monitor your Azure SQL Database in Near Real-Time to Detect Reliability Incidents",
@@ -1688,7 +1672,7 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Find Cache for Redis instances with one or no Zones selected\r\nresources\r\n| where type == \"microsoft.cache/redis\"\r\n| where array_length(zones) <= 1 or isnull(zones)\r\n| project recommendationId = \"redis-1\", name, id, param1 = \"AvailabilityZones: Single Zone\"\r\n| order by id asc",
+              "query": "// Azure Resource Graph Query\r\n// Find Cache for Redis instances with one or no Zones selected\r\nresources\r\n| where type == \"microsoft.cache/redis\"\r\n| where array_length(zones) <= 1 or isnull(zones)\r\n| project recommendationId = \"redis-1\", name, id, tags, param1 = \"AvailabilityZones: Single Zone\"\r\n| order by id asc",
               "size": 0,
               "showAnalytics": true,
               "title": "REDIS-1 - Enable zone redundancy for Azure Cache for Redis",
@@ -1715,52 +1699,6 @@
         "value": "Databases"
       },
       "name": "Databases"
-    },
-    {
-      "type": 12,
-      "content": {
-        "version": "NotebookGroup/1.0",
-        "groupType": "editable",
-        "items": [
-          {
-            "type": 1,
-            "content": {
-              "json": "No Services",
-              "style": "info"
-            },
-            "name": "General Info"
-          }
-        ]
-      },
-      "conditionalVisibility": {
-        "parameterName": "selectedCategory",
-        "comparison": "isEqualTo",
-        "value": "General"
-      },
-      "name": "General"
-    },
-    {
-      "type": 12,
-      "content": {
-        "version": "NotebookGroup/1.0",
-        "groupType": "editable",
-        "items": [
-          {
-            "type": 1,
-            "content": {
-              "json": "No Services",
-              "style": "info"
-            },
-            "name": "Hybrid Info"
-          }
-        ]
-      },
-      "conditionalVisibility": {
-        "parameterName": "selectedCategory",
-        "comparison": "isEqualTo",
-        "value": "Hybrid"
-      },
-      "name": "Hybrid"
     },
     {
       "type": 12,
@@ -1797,6 +1735,14 @@
                   "linkLabel": "Event Hub",
                   "subTarget": "EventHub",
                   "style": "link"
+                },
+                {
+                  "id": "87078446-c8dd-472d-b27e-2e21af69d97e",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Service Bus",
+                  "subTarget": "ServiceBus",
+                  "style": "link"
                 }
               ]
             },
@@ -1806,7 +1752,7 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Find all API Management instances that aren't Premium\r\nresources\r\n| where type =~ 'Microsoft.ApiManagement/service'\r\n| extend skuName = sku.name\r\n| where tolower(skuName) != tolower('premium')\r\n| project recommendationId = \"apim-1\", name, id, param1=strcat(\"SKU: \", skuName)",
+              "query": "// Azure Resource Graph Query\r\n// Find all API Management instances that aren't Premium\r\nresources\r\n| where type =~ 'Microsoft.ApiManagement/service'\r\n| extend skuName = sku.name\r\n| where tolower(skuName) != tolower('premium')\r\n| project recommendationId = \"apim-1\", name, id, tags, param1=strcat(\"SKU: \", skuName)",
               "size": 0,
               "showAnalytics": true,
               "title": "APIM-1 - Migrate API Management services to Premium SKU to support Availability Zones",
@@ -1829,7 +1775,7 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Find all Premium API Management instances that aren't zone redundant\r\nresources\r\n| where type =~ 'Microsoft.ApiManagement/service'\r\n| extend skuName = sku.name\r\n| where tolower(skuName) == tolower('premium')\r\n| where isnull(zones) or array_length(zones) < 2\r\n| extend zoneValue = iff((isnull(zones)), \"null\", zones)\r\n| project recommendationId = \"apim-2\", name, id, param1=\"Zones: No Zone or Zonal\", param2=strcat(\"Zones value: \", zoneValue )",
+              "query": "// Azure Resource Graph Query\r\n// Find all Premium API Management instances that aren't zone redundant\r\nresources\r\n| where type =~ 'Microsoft.ApiManagement/service'\r\n| extend skuName = sku.name\r\n| where tolower(skuName) == tolower('premium')\r\n| where isnull(zones) or array_length(zones) < 2\r\n| extend zoneValue = iff((isnull(zones)), \"null\", zones)\r\n| project recommendationId = \"apim-2\", name, id, tags, param1=\"Zones: No Zone or Zonal\", param2=strcat(\"Zones value: \", zoneValue )",
               "size": 0,
               "showAnalytics": true,
               "title": "APIM-2 - Enable Availability Zones on Premium API Management instances",
@@ -1852,7 +1798,7 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Find all eventgrid services not protected by private endpoints.\r\nResources\r\n| where type contains \"eventgrid\"\r\n| where properties['publicNetworkAccess'] == \"Enabled\"\r\n| project recommendationId = \"evg-3\", name, id\r\n| order by id asc",
+              "query": "// Azure Resource Graph Query\r\n// Find all eventgrid services not protected by private endpoints.\r\nResources\r\n| where type contains \"eventgrid\"\r\n| where properties['publicNetworkAccess'] == \"Enabled\"\r\n| project recommendationId = \"evg-3\", name, id, tags\r\n| order by id asc",
               "size": 0,
               "showAnalytics": true,
               "title": "EVG-3 - Configure Private Endpoints",
@@ -1875,7 +1821,7 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Find Event Hub namespace instances that are not zone redundant\r\nresources\r\n| where type == \"microsoft.eventhub/namespaces\"\r\n| where properties.zoneRedundant == false\r\n| project recommendationId = \"evhns-1\", name, id, param1 = \"ZoneRedundant: False\"\r\n| order by id asc",
+              "query": "// Azure Resource Graph Query\r\n// Find Event Hub namespace instances that are not zone redundant\r\nresources\r\n| where type == \"microsoft.eventhub/namespaces\"\r\n| where properties.zoneRedundant == false\r\n| project recommendationId = \"evhns-1\", name, id, param1 = \"ZoneRedundant: False\", tags\r\n| order by id asc",
               "size": 0,
               "showAnalytics": true,
               "title": "EVHNS-1 - Enable zone redundancy for Event Hub namespace",
@@ -1893,6 +1839,29 @@
               "value": "EventHub"
             },
             "name": "EVHNS-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Returns Service Bus namespaces that do not have any availability zones enabled\r\nresources\r\n| where type =~ 'Microsoft.ServiceBus/namespaces'\r\n| where properties.zoneRedundant == 'false'\r\n| project recommendationId = \"sbns-1\", name, id, tags, param1=strcat(\"zoneRedundant: \", properties.zoneRedundant), param2=strcat(\"SKU: \", sku.name), param3=iff(tolower(sku.name) == 'premium', 'Move Service Bus namespace to a region that supports Availability Zones', 'Migrate to Premium SKU in a region that supports Availability Zones')",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "SBNS-1 - Enable Availability Zones for Service Bus namespaces",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ServiceBus"
+            },
+            "name": "SBNS-1"
           }
         ]
       },
@@ -1928,12 +1897,73 @@
             "name": "Internet of Things Tabs"
           },
           {
-            "type": 1,
+            "type": 3,
             "content": {
-              "json": "Under-Development",
-              "style": "info"
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// list all IoT Hubs that are using the Free tier\r\nresources\r\n| where type =~ \"microsoft.devices/iothubs\" and\r\n    tostring(sku.tier) =~ 'Free'\r\n| project recommendationId=\"ioth-2\", name, id, tags, param1=strcat(\"tier:\", tostring(sku.tier))",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "IOTH-2 - Do not use free tier",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
             },
-            "name": "IoT Hub Info"
+            "conditionalVisibility": {
+              "parameterName": "selectedCategory",
+              "comparison": "isEqualTo",
+              "value": "InternetOfThings"
+            },
+            "name": "IOTH-2"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// list all IoT Hubs that do not have a linked IoT Hub Device Provisioning Service (DPS)\r\nresources\r\n| where type =~ \"microsoft.devices/iothubs\"\r\n| project id, iotHubName=tostring(properties.hostName), tags, resourceGroup\r\n| join kind=fullouter (\r\n    resources\r\n    | where type == \"microsoft.devices/provisioningservices\"\r\n    | mv-expand iotHubs=properties.iotHubs\r\n    | project iotHubName = tostring(iotHubs.name), dpsName = name, name=iotHubs.name\r\n) on iotHubName\r\n| where dpsName == ''\r\n| project recommendationId=\"ioth-4\", name=iotHubName, id, tags, param1='DPS:none'",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "IOTH-4 - Use Device Provisioning Service",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedCategory",
+              "comparison": "isEqualTo",
+              "value": "InternetOfThings"
+            },
+            "name": "IOTH-4"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// list all IoT Hubs that have the fallback route disabled\r\nresources\r\n| where type == \"microsoft.devices/iothubs\"\r\n| extend fallbackEnabled=properties.routing.fallbackRoute.isEnabled\r\n| where fallbackEnabled == false\r\n| project recommendationId=\"ioth-6\", name, id, tags, param1='FallbackRouteEnabled:false'",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "IOTH-6 - Disabled Fallback Route",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedCategory",
+              "comparison": "isEqualTo",
+              "value": "InternetOfThings"
+            },
+            "name": "IOTH-6"
           }
         ]
       },
@@ -1971,6 +2001,14 @@
                   "linkLabel": "Management Groups",
                   "subTarget": "ManagementGroup",
                   "style": "link"
+                },
+                {
+                  "id": "f4d7252a-05a0-4f27-99aa-ba026b348ae2",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "Resource Groups",
+                  "subTarget": "ResourceGroup",
+                  "style": "link"
                 }
               ]
             },
@@ -1993,7 +2031,7 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Provides a list of Azure Subscriptions that are placed under the Tenant Root Management Group\r\nResourceContainers\r\n| where type == 'microsoft.resources/subscriptions'\r\n| extend mgParentSize = array_length(properties.managementGroupAncestorsChain)\r\n| where mgParentSize == 1\r\n| project recommendationId=\"mg-1\", name, id",
+              "query": "// Azure Resource Graph Query\r\n// Provides a list of Azure Subscriptions that are placed under the Tenant Root Management Group\r\nresourcecontainers\r\n| where type == 'microsoft.resources/subscriptions'\r\n| extend mgParentSize = array_length(properties.managementGroupAncestorsChain)\r\n| where mgParentSize == 1\r\n| project recommendationId=\"mg-1\", name, id, tags",
               "size": 0,
               "showAnalytics": true,
               "title": "MG-1 - Subscriptions should not be placed under the Tenant Root Management Group",
@@ -2011,6 +2049,29 @@
               "value": "ManagementGroup"
             },
             "name": "MG-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Provides a list of Azure Resource Groups that have resources deployed in a region different than the Resource Group region\r\nresources\r\n| project id, name, tags, resourceGroup, location\r\n| where location != \"global\"                                                                                                          // exclude global resources\r\n| where resourceGroup != \"networkwatcherrg\"                                                                                           // exclude networkwatcherrg\r\n| where split(id, \"/\", 3)[0] =~ \"resourceGroups\"                                                                                      // resource is in a resource group\r\n| extend resourceGroupId = strcat_array(array_slice(split(id, \"/\"),0,4), \"/\")                                                         // create resource group resource id\r\n| join (resourcecontainers | project containerid=id, containerlocation=location ) on $left.resourceGroupId == $right.['containerid']  // join to resourcecontainers table\r\n| where  location != containerlocation\r\n| project recommendationId=\"rg-1\", name, id, tags\r\n| order by id asc",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "RG-1 - Resource group location alignment",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "ResourceGroup"
+            },
+            "name": "RG-1"
           }
         ]
       },
@@ -2049,7 +2110,7 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "// This Resource Graph query will return all Recovery services vault with Classic alerts enabled.\r\nResources\r\n| where type in~ ('microsoft.recoveryservices/vaults')\r\n| extend monitoringSettings = parse_json(properties).monitoringSettings\r\n| extend isUsingClassicAlerts = case(isnull(monitoringSettings), 'Enabled',monitoringSettings.classicAlertSettings.alertsForCriticalOperations)\r\n| extend isUsingJobsAlerts = case(isnull(monitoringSettings), 'Enabled', monitoringSettings.azureMonitorAlertSettings.alertsForAllJobFailures)\r\n| where isUsingClassicAlerts == 'Enabled'\r\n| project recommendationId = \"bk-1\",name,id,tags,param1=strcat(\"isUsingClassicAlerts: \", isUsingClassicAlerts),param2=strcat(\"isUsingJobsAlerts: \", isUsingJobsAlerts)",
+              "query": "// This Resource Graph query will return all Recovery services vault with Classic alerts enabled.\r\nresources\r\n| where type in~ ('microsoft.recoveryservices/vaults')\r\n| extend monitoringSettings = parse_json(properties).monitoringSettings\r\n| extend isUsingClassicAlerts = case(isnull(monitoringSettings),'Enabled',monitoringSettings.classicAlertSettings.alertsForCriticalOperations)\r\n| extend isUsingJobsAlerts = case(isnull(monitoringSettings), 'Enabled', monitoringSettings.azureMonitorAlertSettings.alertsForAllJobFailures)\r\n| where isUsingClassicAlerts == 'Enabled'\r\n| project recommendationId = \"bk-1\", name, id, tags, param1=strcat(\"isUsingClassicAlerts: \", isUsingClassicAlerts), param2=strcat(\"isUsingJobsAlerts: \", isUsingJobsAlerts)",
               "size": 0,
               "showAnalytics": true,
               "title": "BK-1 - Migrate from classic alerts to built-in Azure Monitor alerts for Recovery services vaults",
@@ -2067,6 +2128,29 @@
               "value": "AzureBackup"
             },
             "name": "BK-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Displays all recovery services vaults that do not have cross region restore enabled\r\n\r\nresources\r\n| where type == \"microsoft.recoveryservices/vaults\"\r\n| where properties.properties.enableCrossRegionRestore != true\r\n| project recommendationId = \"bk-2\", name, id, tags",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "BK-2 - Opt-in to Cross Region Restore for all Geo-Redundant Storage (GRS) Azure Recovery Services vaults",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "AzureBackup"
+            },
+            "name": "BK-2"
           }
         ]
       },
@@ -2113,7 +2197,7 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "resources\r\n| where type =~ \"microsoft.insights/components\"\r\n| extend IngestionMode = properties.IngestionMode\r\n| where IngestionMode =~ 'ApplicationInsights'\r\n| project recommendationId= \"APPI-1\", name, id, param1=\"ApplicationInsightsDeploymentType: Classic\"",
+              "query": "resources\r\n| where type =~ \"microsoft.insights/components\"\r\n| extend IngestionMode = properties.IngestionMode\r\n| where IngestionMode =~ 'ApplicationInsights'\r\n| project recommendationId= \"appi-1\", name, id, tags, param1=\"ApplicationInsightsDeploymentType: Classic\"",
               "size": 0,
               "showAnalytics": true,
               "title": "APPI-1 - Convert Classic Deployments",
@@ -2204,14 +2288,6 @@
                   "linkTarget": "parameter",
                   "linkLabel": "Front Door",
                   "subTarget": "FrontDoor",
-                  "style": "link"
-                },
-                {
-                  "id": "773d152f-12c0-42eb-a90a-12ad297b77a1",
-                  "cellValue": "selectedService",
-                  "linkTarget": "parameter",
-                  "linkLabel": "General Networking",
-                  "subTarget": "GeneralNW",
                   "style": "link"
                 },
                 {
@@ -2348,6 +2424,29 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// This query will validate the subnet id for an appGW ends with a /24\r\n\r\nresources\r\n| where type =~ 'Microsoft.Network/applicationGateways'\r\n| extend subnetid = tostring(properties.gatewayIPConfigurations[0].properties.subnet.id)\r\n| join kind=leftouter(resources\r\n    | where type == \"microsoft.network/virtualnetworks\"\r\n    | mv-expand properties.subnets\r\n    | extend subnetid = tostring(properties_subnets.id)\r\n    | extend addressprefix = tostring(properties_subnets.properties.addressPrefix)\r\n    | project subnetid, addressprefix) on subnetid\r\n| where addressprefix !endswith '/24'\r\n| project recommendationID = \"agw-8\", name, id, tags, param1 = strcat('AppGW subnet prefix: ', addressprefix)",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "AGW-9 - Ensure Application Gateway Subnet is using a /24 subnet mask",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "AppGW"
+            },
+            "name": "AGW-9"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
               "query": "// Azure Resource Graph Query\r\n// Goal: Show any ExpressRoute circuit where one of the connections is not configured (i.e. no IP)\r\nResources\r\n| where type =~ 'Microsoft.Network/expressRouteCircuits'\r\n| where properties.value[0].provisioningState != 'Succeeded' or properties.value[1].provisioningState != 'Succeeded'\r\n| where not(properties.peerings[0].properties.primaryPeerAddressPrefix != \"null\" and  properties.peerings[0].properties.secondaryPeerAddressPrefix != \"null\")\r\n| project recommendationId = \"erc-1\", name, id, tags, param1 = strcat(\"Peer1_IP: \",properties.peerings[0].properties.primaryPeerAddressPrefix), param2=strcat(\"Peer2_IP: \", properties.peerings[0].properties.secondaryPeerAddressPrefix)\r\n| order by id asc",
               "size": 0,
               "showAnalytics": true,
@@ -2388,20 +2487,76 @@
               "comparison": "isEqualTo",
               "value": "ERGW"
             },
-            "name": "ERGW-1"
+            "name": "ERGW-2"
           },
           {
-            "type": 1,
+            "type": 3,
             "content": {
-              "json": "Under-Development",
-              "style": "info"
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// List all Azure Firewalls that are not configured with multiple availability zones or deployed without a zone\r\nresources\r\n| where type == 'microsoft.network/azurefirewalls'\r\n| where array_length(zones) <= 1 or isnull(zones)\r\n| project recommendationId = \"afw-1\", name, id, param1=\"multipleZones:false\"",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "AFW-1 - Deploy Azure Firewall across multiple availability zones",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
             },
             "conditionalVisibility": {
               "parameterName": "selectedService",
               "comparison": "isEqualTo",
               "value": "Firewall"
             },
-            "name": "FW Info"
+            "name": "AFW-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// List all Azure Firewalls resources in-scope, along with any metrics associated to Azure Monitor alert rules, that are not fully configured.\r\nresources\r\n| where type == \"microsoft.network/azurefirewalls\"\r\n| project firewallId = tolower(id), name\r\n| join kind = leftouter (\r\n    resources\r\n    | where type == \"microsoft.insights/metricalerts\"\r\n    | mv-expand properties.scopes\r\n    | mv-expand properties.criteria.allOf\r\n    | where properties_scopes contains \"azureFirewalls\"\r\n    | project metricId = tolower(properties_scopes), monitoredMetric = properties_criteria_allOf.metricName\r\n    | summarize monitoredMetrics = make_list(monitoredMetric) by tostring(metricId)\r\n    | project\r\n        metricId,\r\n        monitoredMetrics,\r\n        allAlertsConfigured = monitoredMetrics contains(\"FirewallHealth\") and monitoredMetrics contains (\"Throughput\") and monitoredMetrics contains (\"SNATPortUtilization\")\r\n) on $left.firewallId == $right.metricId\r\n| extend alertsNotFullyConfigured = isnull(allAlertsConfigured) or not(allAlertsConfigured)\r\n| where alertsNotFullyConfigured\r\n| project recommendationId = \"afw-3\", name, id = firewallId, param1 = strcat(\"MetricsAlerts:\", monitoredMetrics)",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "AFW-2 - Monitor Azure Firewall metrics",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "Firewall"
+            },
+            "name": "AFW-2"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// List all in-scope Azure Firewall resources, where the VNet is not associated to a DDoS Protection Plan\r\nresources\r\n| where type == \"microsoft.network/azurefirewalls\"\r\n| mv-expand properties.ipConfigurations\r\n| project name, firewallId = id, vNet = substring(properties_ipConfigurations.properties.subnet.id, 0, indexof(properties_ipConfigurations.properties.subnet, \"/subnet\") - 7)\r\n| join kind=fullouter (\r\n    resources\r\n    | where type == \"microsoft.network/ddosprotectionplans\"\r\n    | mv-expand properties.virtualNetworks\r\n    | extend vNet = tostring(properties_virtualNetworks.id)\r\n    | project ddosProtectionPlan = id, vNet\r\n    )\r\n    on $left.vNet == $right.vNet\r\n| where ddosProtectionPlan == ''\r\n| project recommendationId = \"afw-5\", name, id = firewallId, param1 = \"ddosProtectionPlan:false\"",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "AFW-3 - Configure DDoS Protection on the Azure Firewall VNet",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "Firewall"
+            },
+            "name": "AFW-3"
           },
           {
             "type": 1,
@@ -2415,19 +2570,6 @@
               "value": "FrontDoor"
             },
             "name": "Front Door Info"
-          },
-          {
-            "type": 1,
-            "content": {
-              "json": "No Queries",
-              "style": "info"
-            },
-            "conditionalVisibility": {
-              "parameterName": "selectedService",
-              "comparison": "isEqualTo",
-              "value": "GeneralNW"
-            },
-            "name": "General NW Info"
           },
           {
             "type": 3,
@@ -2732,7 +2874,7 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Find Subnets without NSG associated\r\nresources\r\n| where type =~ 'Microsoft.Network/virtualnetworks'\r\n| mv-expand subnets = properties.subnets\r\n| extend sn = string_size(subnets.properties.networkSecurityGroup)\r\n| where sn == 0\r\n| project recommendationId = \"vnet-1\", name, id, tags, param1 = strcat(\"SubnetName: \", subnets.name), param2 = \"NSG: False\"",
+              "query": "// Azure Resource Graph Query\r\n// Find Subnets without NSG associated\r\nresources\r\n| where type =~ 'Microsoft.Network/virtualnetworks'\r\n| mv-expand subnets = properties.subnets\r\n| extend sn = string_size(subnets.properties.networkSecurityGroup)\r\n| where sn == 0 and subnets.name !in (\"GatewaySubnet\", \"AzureFirewallSubnet\", \"AzureFirewallManagementSubnet\", \"RouteServerSubnet\")\r\n| project recommendationId = \"vnet-1\", name, id, tags, param1 = strcat(\"SubnetName: \", subnets.name), param2 = \"NSG: False\"",
               "size": 0,
               "showAnalytics": true,
               "title": "VNET-1 - All Subnets should have a Network Security Group associated",
@@ -2773,6 +2915,29 @@
               "value": "VNet"
             },
             "name": "VNET-2"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find Subnets with Service Endpoint enabled for services that offer Private Link\r\nresources\r\n| where type =~ 'Microsoft.Network/virtualnetworks'\r\n| mv-expand subnets = properties.subnets\r\n| extend se = array_length(subnets.properties.serviceEndpoints)\r\n| where se >= 1\r\n| project name, id, subnets, serviceEndpoints=todynamic(subnets.properties.serviceEndpoints)\r\n| mv-expand serviceEndpoints\r\n| project name, id, subnetName=subnets.name, serviceName=tostring(serviceEndpoints.service)\r\n| where serviceName in (parse_json('[\"Microsoft.CognitiveServices\",\"Microsoft.AzureCosmosDB\",\"Microsoft.DBforMariaDB\",\"Microsoft.DBforMySQL\",\"Microsoft.DBforPostgreSQL\",\"Microsoft.EventHub\",\"Microsoft.KeyVault\",\"Microsoft.ServiceBus\",\"Microsoft.Sql\", \"Microsoft.Storage\",\"Microsoft.StorageSync\",\"Microsoft.Synapse\",\"Microsoft.Web\"]'))\r\n| project recommendationId = \"vnet-3\", name, id, param1 = strcat(\"subnet=\", subnetName), param2=strcat(\"serviceName=\",serviceName), param3=\"ServiceEndpoints=true\"",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "VNET-3 - When available, use Private Endpoints instead of Service Endpoints for PaaS Services",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "VNet"
+            },
+            "name": "VNET-3"
           },
           {
             "type": 3,
@@ -2911,6 +3076,29 @@
               "value": "KV"
             },
             "name": "KV-2"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// This resource graph query will return all Key Vaults that does not have a Private Endpoint Connection or where a private endpoint exists but public access is enabled\r\n\r\nresources\r\n| where type == \"microsoft.keyvault/vaults\"\r\n| where isnull(properties.privateEndpointConnections) or properties.privateEndpointConnections[0].properties.provisioningState != (\"Succeeded\") or (isnull(properties.networkAcls) and properties.publicNetworkAccess == 'Enabled')\r\n| extend param1 = strcat('Private Endpoint: ', iif(isnotnull(properties.privateEndpointConnections),split(properties.privateEndpointConnections[0].properties.privateEndpoint.id,'/')[8],'No Private Endpoint'))\r\n| extend param2 = strcat('Access: ', iif(properties.publicNetworkAccess == 'Disabled', 'Public Access Disabled', iif(isnotnull(properties.networkAcls), 'NetworkACLs in place','Public Access Enabled')))\r\n| project recommendationID = \"kv-3\", name, id, param1, param2",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "KV-3 - Enable Azure Private Link Service for Key vault",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "KV"
+            },
+            "name": "KV-3"
           }
         ]
       },
@@ -2984,17 +3172,96 @@
             "name": "テキスト - 2"
           },
           {
-            "type": 1,
+            "type": 3,
             "content": {
-              "json": "Under-Development",
-              "style": "info"
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Provides a list of Azure VMware Solution resources that don't have a vSAN capacity critical alert with a threshold of 75% or a warning capacity of 70%.\r\n(\r\nresources\r\n| where ['type'] == \"microsoft.avs/privateclouds\"\r\n| extend scopeId = tostring(id)\r\n| project ['scopeId'], name, id, tags\r\n| join kind=leftouter (\r\nresources\r\n| where type == \"microsoft.insights/metricalerts\"\r\n| extend alertProperties = todynamic(properties)\r\n| mv-expand alertProperties.scopes\r\n| mv-expand alertProperties.criteria.allOf\r\n| extend scopeId = tostring(alertProperties_scopes)\r\n| extend metric = alertProperties_criteria_allOf.metricName\r\n| extend threshold = alertProperties_criteria_allOf.threshold\r\n| project scopeId, tostring(metric), toint(['threshold'])\r\n| where metric == \"DiskUsedPercentage\"\r\n| where threshold == 75\r\n) on scopeId\r\n| where isnull(['threshold'])\r\n| project recommendationId = \"avs-3\", name, id, tags, param1 = \"vsanCapacityCriticalAlert: isNull or threshold != 75\"\r\n)\r\n| union (\r\nresources\r\n| where ['type'] == \"microsoft.avs/privateclouds\"\r\n| extend scopeId = tostring(id)\r\n| project ['scopeId'], name, id, tags\r\n| join kind=leftouter (\r\nresources\r\n| where type == \"microsoft.insights/metricalerts\"\r\n| extend alertProperties = todynamic(properties)\r\n| mv-expand alertProperties.scopes\r\n| mv-expand alertProperties.criteria.allOf\r\n| extend scopeId = tostring(alertProperties_scopes)\r\n| extend metric = alertProperties_criteria_allOf.metricName\r\n| extend threshold = alertProperties_criteria_allOf.threshold\r\n| project scopeId, tostring(metric), toint(['threshold'])\r\n| where metric == \"DiskUsedPercentage\"\r\n| where threshold == 70\r\n) on scopeId\r\n| where isnull(['threshold'])\r\n| project recommendationId = \"avs-3\", name, id, tags, param1 = \"vsanCapacityWarningAlert: isNull or threshold != 70\"\r\n)",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "AVS-3 - Configure Azure Monitor Alert warning thresholds for vSAN datastore consumption",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
             },
             "conditionalVisibility": {
               "parameterName": "selectedService",
               "comparison": "isEqualTo",
               "value": "AVS"
             },
-            "name": "AVS Info"
+            "name": "AVS-3"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Provides a list of Azure VMware Solution resources that aren't configured as stretch clusters and in supported regions.\r\nresources\r\n| where ['type'] == \"microsoft.avs/privateclouds\"\r\n| extend avsproperties = todynamic(properties)\r\n| where avsproperties.availability.strategy != \"DualZone\"\r\n| where location in (\"uksouth\", \"westeurope\", \"germanywestcentral\", \"australiaeast\")\r\n| project recommendationId = \"avs-4\", name, id, tags, param1 = \"stretchClusters: Disabled\"",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "AVS-4 - Enable Stretched Clusters for High Availability of the vSAN Datastore",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "AVS"
+            },
+            "name": "AVS-4"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Provides a list of Azure VMware Solution resources that don't have a Cluster CPU capacity critical alert with a threshold of 75%.\r\nresources\r\n| where ['type'] == \"microsoft.avs/privateclouds\"\r\n| extend scopeId = tostring(id)\r\n| project ['scopeId'], name, id, tags\r\n| join kind=leftouter (\r\nresources\r\n| where type == \"microsoft.insights/metricalerts\"\r\n| extend alertProperties = todynamic(properties)\r\n| mv-expand alertProperties.scopes\r\n| mv-expand alertProperties.criteria.allOf\r\n| extend scopeId = tostring(alertProperties_scopes)\r\n| extend metric = alertProperties_criteria_allOf.metricName\r\n| extend threshold = alertProperties_criteria_allOf.threshold\r\n| project scopeId, tostring(metric), toint(['threshold'])\r\n| where metric == \"EffectiveCpuAverage\"\r\n| where threshold == 80\r\n) on scopeId\r\n| where isnull(['threshold'])\r\n| project recommendationId = \"avs-5\", name, id, tags, param1 = \"hostCpuCriticalAlert: isNull or threshold != 80\"",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "AVS-5 - Monitor CPU Utilization to ensure sufficient resources",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "AVS"
+            },
+            "name": "AVS-5"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Provides a list of Azure VMware Solution resources that don't have a cluster host memory critical alert with a threshold of 80%.\r\nresources\r\n| where ['type'] == \"microsoft.avs/privateclouds\"\r\n| extend scopeId = tostring(id)\r\n| project ['scopeId'], name, id, tags\r\n| join kind=leftouter (\r\nresources\r\n| where type == \"microsoft.insights/metricalerts\"\r\n| extend alertProperties = todynamic(properties)\r\n| mv-expand alertProperties.scopes\r\n| mv-expand alertProperties.criteria.allOf\r\n| extend scopeId = tostring(alertProperties_scopes)\r\n| extend metric = alertProperties_criteria_allOf.metricName\r\n| extend threshold = alertProperties_criteria_allOf.threshold\r\n| project scopeId, tostring(metric), toint(['threshold'])\r\n| where metric == \"UsageAverage\"\r\n| where threshold == 80\r\n) on scopeId\r\n| where isnull(['threshold'])\r\n| project recommendationId = \"avs-6\", name, id, tags, param1 = \"hostMemoryCriticalAlert: isNull or threshold != 80\"",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "AVS-6 - Monitor Memory Utilization to ensure sufficient resources",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "AVS"
+            },
+            "name": "AVS-6"
           }
         ]
       },
@@ -3128,6 +3395,29 @@
               "value": "ANF"
             },
             "name": "ANF-6"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// This query will return all storage accounts that are not using at least Zone replication\r\nResources\r\n| where type =~'microsoft.storage/storageaccounts'\r\n| where sku.name =~'Standard_LRS'\r\n| project recommendationId = 'st-1', name, id, param1=sku.name",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "ST-1 - Ensure that Storage Account configuration is at least Zone redundant",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "StorageAccount"
+            },
+            "name": "ST-1"
           },
           {
             "type": 3,
@@ -3346,7 +3636,7 @@
               "query": "// Azure Resource Graph Query\r\n// Provides a list of Azure App Service resources and checks if they have Diagnostic logs Categories turned on or now, list settings with on or off indicator\r\n\r\nappserviceresources\r\n| where ['type'] == \"microsoft.web/sites/config\"\r\n| where not(name contains \"/slots/\")\r\n| project id, properties.AzureMonitorLogCategories, name\r\n| extend AzureMonitorLogCategories = iif(isempty(properties_AzureMonitorLogCategories), false, true)\r\n, AppServiceHTTPLogs = iif(set_has_element(properties_AzureMonitorLogCategories, \"AppServiceHTTPLogs\"), 1, 0)\r\n, AppServiceConsoleLogs = iif(set_has_element(properties_AzureMonitorLogCategories, \"AppServiceConsoleLogs\"), 1, 0)\r\n, AppServiceAppLogs = iif(set_has_element(properties_AzureMonitorLogCategories, \"AppServiceAppLogs\"), 1, 0)\r\n, AppServiceFileAuditLogs = iif(set_has_element(properties_AzureMonitorLogCategories, \"AppServiceFileAuditLogs\"), 1, 0)\r\n, AppServiceAuditLogs = iif(set_has_element(properties_AzureMonitorLogCategories, \"AppServiceAuditLogs\"), 1, 0)\r\n, AppServiceIPSecAuditLogs = iif(set_has_element(properties_AzureMonitorLogCategories, \"AppServiceIPSecAuditLogs\"), 1, 0)\r\n, AppServicePlatformLogs = iif(set_has_element(properties_AzureMonitorLogCategories, \"AppServicePlatformLogs\"), 1, 0)\r\n, AppServiceAntivirusScanAuditLogs = iif(set_has_element(properties_AzureMonitorLogCategories, \"AppServiceAntivirusScanAuditLogs\"), 1, 0)\r\n| project recommendationId=\"app-1\" , ['id'], [\"Azure Monitor Logs\"]= AzureMonitorLogCategories , AppServiceAntivirusScanAuditLogs, AppServiceAppLogs, AppServiceAuditLogs, AppServiceConsoleLogs, AppServiceFileAuditLogs, AppServiceHTTPLogs,  AppServiceIPSecAuditLogs,  AppServicePlatformLogs",
               "size": 0,
               "showAnalytics": true,
-              "title": "App-1 - Enable diagnostics logging",
+              "title": "APP-1 - Enable diagnostics logging",
               "noDataMessageStyle": 3,
               "showExportToExcel": true,
               "queryType": 1,
@@ -3360,7 +3650,7 @@
               "comparison": "isEqualTo",
               "value": "WebApps"
             },
-            "name": "App-1"
+            "name": "APP-1"
           },
           {
             "type": 3,
@@ -3369,7 +3659,7 @@
               "query": "\r\n// Azure Resource Graph Query\r\n// Provides a list of Azure App Service resources and checks if they have Application Insights enabled by looking for the “APPINSIGHTS_INSTRUMENTATIONKEY” or “APPLICATIONINSIGHTS_CONNECTION_STRING” settings in their configuration.\r\n\r\nappserviceresources\r\n| where type == \"microsoft.web/sites/config\"\r\n| extend appSettings = properties.AppSettings\r\n| mv-expand appSettings\r\n| extend settingName = tostring(appSettings.Name)\r\n| extend isAppInsightsInstrumentationKey = iif(settingName == \"APPINSIGHTS_INSTRUMENTATIONKEY\", true, false)\r\n| extend isApplicationInsightsConnectionString = iif(settingName == \"APPLICATIONINSIGHTS_CONNECTION_STRING\", true, false)\r\n| extend isAppInsightsEnabled = iif(isAppInsightsInstrumentationKey or isApplicationInsightsConnectionString, true, false)\r\n| project recommendationId=\"app-2\", name,  id, settingName, isAppInsightsInstrumentationKey, isApplicationInsightsConnectionString, isAppInsightsEnabled",
               "size": 0,
               "showAnalytics": true,
-              "title": "App-2 - Monitor Performance",
+              "title": "APP-2 - Monitor Performance",
               "noDataMessageStyle": 3,
               "showExportToExcel": true,
               "queryType": 1,
@@ -3383,16 +3673,16 @@
               "comparison": "isEqualTo",
               "value": "WebApps"
             },
-            "name": "App-2"
+            "name": "APP-2"
           },
           {
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Display App Service with the count of deployment slots for Apps under eligible App service plans and it shows if deployment slot is enabled or not\r\n\r\nresources\r\n| where type =~ 'microsoft.web/sites' or type =~ 'microsoft.web/sites/slots'\r\n| extend isSlot = iff(type =~ 'microsoft.web/sites/slots', 1, 0)\r\n| extend AspName = iff(isSlot == 1, split(name, '/')[0], name)\r\n| extend Sku = tostring(properties.sku)\r\n| where tolower(Sku) contains \"standard\" or tolower(Sku) contains \"premium\" or tolower(Sku) contains \"isolatedv2\"\r\n| project id, name, AspName, isSlot, Sku\r\n| summarize Slots = countif(isSlot == 1) by id, name, AspName, Sku\r\n| extend recommendationid = \"asp-5\"\r\n| extend DeploymentSlotEnabled = iff(Slots > 1, true, false)\r\n| project recommendationid, name, id, Sku, Slots, DeploymentSlotEnabled",
+              "query": "// Azure Resource Graph Query\r\n// Display App Service with the count of deployment slots for Apps under eligible App service plans and it shows if deployment slot is enabled or not\r\n\r\nresources\r\n| where type =~ 'microsoft.web/sites' or type =~ 'microsoft.web/sites/slots'\r\n| extend isSlot = iff(type =~ 'microsoft.web/sites/slots', 1, 0)\r\n| extend AspName = iff(isSlot == 1, split(name, '/')[0], name)\r\n| extend Sku = tostring(properties.sku)\r\n| where tolower(Sku) contains \"standard\" or tolower(Sku) contains \"premium\" or tolower(Sku) contains \"isolatedv2\"\r\n| project id, name, AspName, isSlot, Sku\r\n| summarize Slots = countif(isSlot == 1) by id, name, AspName, Sku\r\n| extend recommendationid = \"app-5\"\r\n| extend DeploymentSlotEnabled = iff(Slots > 1, true, false)\r\n| project recommendationid, name, id, Sku, Slots, DeploymentSlotEnabled",
               "size": 0,
               "showAnalytics": true,
-              "title": "App-5 - Deploy to a staging slot",
+              "title": "APP-5 - Deploy to a staging slot",
               "noDataMessageStyle": 3,
               "showExportToExcel": true,
               "queryType": 1,
@@ -3406,7 +3696,7 @@
               "comparison": "isEqualTo",
               "value": "WebApps"
             },
-            "name": "App-5"
+            "name": "APP-5"
           },
           {
             "type": 3,
@@ -3415,7 +3705,7 @@
               "query": "// Azure Resource Graph Query\r\n//Provides a list of Azure App Service resources and checks if they is any App Setting configured under this App\r\n\r\nappserviceresources\r\n| where ['type'] == \"microsoft.web/sites/config\"\r\n| project  recommendationId=\"app-5\", id, name, AppSettings = iif(isempty(properties.AppSettings), 0, 1) , properties",
               "size": 0,
               "showAnalytics": true,
-              "title": "App-6 - Store configuration as app settings",
+              "title": "APP-6 - Store configuration as app settings",
               "noDataMessageStyle": 3,
               "showExportToExcel": true,
               "queryType": 1,
@@ -3429,7 +3719,7 @@
               "comparison": "isEqualTo",
               "value": "WebApps"
             },
-            "name": "App-6"
+            "name": "APP-6"
           }
         ]
       },
