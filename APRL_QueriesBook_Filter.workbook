@@ -52,10 +52,7 @@
             },
             "defaultValue": "value::all",
             "queryType": 1,
-            "resourceType": "microsoft.resourcegraph/resources",
-            "value": [
-              "value::all"
-            ]
+            "resourceType": "microsoft.resourcegraph/resources"
           },
           {
             "id": "ca8b763a-226e-4785-9a75-cafd13bc9a72",
@@ -3227,7 +3224,7 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "// Azure Resource Graph Query\r\n// Provides a list of Azure VMware Solution resources that don't have a vSAN capacity critical alert with a threshold of 75% or a warning capacity of 70%.\r\n(\r\nresources\r\n| where resourceGroup in ({ResourceGroups})\r\n| join kind = innerunique(\r\n    resources\r\n    | extend replaced_tags = replace('{}', 'null', tostring(tags))\r\n    | extend replaced_tags = parse_json(replaced_tags)\r\n    | mv-expand replaced_tags\r\n    | extend tagName = tostring(bag_keys(replaced_tags)[0])\r\n    | extend tagValue = tostring(replaced_tags['{TagName}'])\r\n    | where tagName has '{TagName}' and tagValue has '{TagValue}'\r\n    | distinct id\r\n    )\r\n    on id\r\n| where ['type'] == \"microsoft.avs/privateclouds\"\r\n| extend scopeId = tostring(id)\r\n| project ['scopeId'], name, id, resourceGroup, tags\r\n| join kind=leftouter (\r\nresources\r\n| where type == \"microsoft.insights/metricalerts\"\r\n| extend alertProperties = todynamic(properties)\r\n| mv-expand alertProperties.scopes\r\n| mv-expand alertProperties.criteria.allOf\r\n| extend scopeId = tostring(alertProperties_scopes)\r\n| extend metric = alertProperties_criteria_allOf.metricName\r\n| extend threshold = alertProperties_criteria_allOf.threshold\r\n| project scopeId, tostring(metric), toint(['threshold'])\r\n| where metric == \"DiskUsedPercentage\"\r\n| where threshold == 75\r\n) on scopeId\r\n| where isnull(['threshold'])\r\n| project recommendationId = \"avs-3\", name, id, resourceGroup, tags, param1 = \"vsanCapacityCriticalAlert: isNull or threshold != 75\"\r\n)\r\n| union (\r\nresources\r\n| where ['type'] == \"microsoft.avs/privateclouds\"\r\n| extend scopeId = tostring(id)\r\n| project ['scopeId'], name, id, resourceGroup, tags\r\n| join kind=leftouter (\r\nresources\r\n| where type == \"microsoft.insights/metricalerts\"\r\n| extend alertProperties = todynamic(properties)\r\n| mv-expand alertProperties.scopes\r\n| mv-expand alertProperties.criteria.allOf\r\n| extend scopeId = tostring(alertProperties_scopes)\r\n| extend metric = alertProperties_criteria_allOf.metricName\r\n| extend threshold = alertProperties_criteria_allOf.threshold\r\n| project scopeId, tostring(metric), toint(['threshold'])\r\n| where metric == \"DiskUsedPercentage\"\r\n| where threshold == 70\r\n) on scopeId\r\n| where isnull(['threshold'])\r\n| project recommendationId = \"avs-3\", name, id, resourceGroup, tags, param1 = \"vsanCapacityWarningAlert: isNull or threshold != 70\"\r\n)",
+              "query": "// Azure Resource Graph Query\r\n// Provides a list of Azure VMware Solution resources that don't have a vSAN capacity critical alert with a threshold of 75% or a warning capacity of 70%.\r\n(\r\nresources\r\n| where resourceGroup in ({ResourceGroups})\r\n| join kind = innerunique(\r\n    resources\r\n    | extend replaced_tags = replace('{}', 'null', tostring(tags))\r\n    | extend replaced_tags = parse_json(replaced_tags)\r\n    | mv-expand replaced_tags\r\n    | extend tagName = tostring(bag_keys(replaced_tags)[0])\r\n    | extend tagValue = tostring(replaced_tags['{TagName}'])\r\n    | where tagName has '{TagName}' and tagValue has '{TagValue}'\r\n    | distinct id\r\n    )\r\n    on id\r\n| where ['type'] == \"microsoft.avs/privateclouds\"\r\n| extend scopeId = tostring(id)\r\n| project ['scopeId'], name, id, resourceGroup, tags\r\n| join kind=leftouter (\r\n    resources\r\n    | where type == \"microsoft.insights/metricalerts\"\r\n    | extend alertProperties = todynamic(properties)\r\n    | mv-expand alertProperties.scopes\r\n    | mv-expand alertProperties.criteria.allOf\r\n    | extend scopeId = tostring(alertProperties_scopes)\r\n    | extend metric = alertProperties_criteria_allOf.metricName\r\n    | extend threshold = alertProperties_criteria_allOf.threshold\r\n    | project scopeId, tostring(metric), toint(['threshold'])\r\n    | where metric == \"DiskUsedPercentage\"\r\n    | where threshold == 75\r\n    ) on scopeId\r\n| where isnull(['threshold'])\r\n| project recommendationId = \"avs-3\", name, id, resourceGroup, tags, param1 = \"vsanCapacityCriticalAlert: isNull or threshold != 75\"\r\n)\r\n| union (\r\n    resources\r\n    | where resourceGroup in ({ResourceGroups})\r\n    | join kind = innerunique(\r\n    resources\r\n    | extend replaced_tags = replace('{}', 'null', tostring(tags))\r\n    | extend replaced_tags = parse_json(replaced_tags)\r\n    | mv-expand replaced_tags\r\n    | extend tagName = tostring(bag_keys(replaced_tags)[0])\r\n    | extend tagValue = tostring(replaced_tags['{TagName}'])\r\n    | where tagName has '{TagName}' and tagValue has '{TagValue}'\r\n    | distinct id\r\n    )\r\n    on id\r\n    | where ['type'] == \"microsoft.avs/privateclouds\"\r\n    | extend scopeId = tostring(id)\r\n    | project ['scopeId'], name, id, resourceGroup, tags\r\n    | join kind=leftouter (\r\n        resources\r\n        | where type == \"microsoft.insights/metricalerts\"\r\n        | extend alertProperties = todynamic(properties)\r\n        | mv-expand alertProperties.scopes\r\n        | mv-expand alertProperties.criteria.allOf\r\n        | extend scopeId = tostring(alertProperties_scopes)\r\n        | extend metric = alertProperties_criteria_allOf.metricName\r\n        | extend threshold = alertProperties_criteria_allOf.threshold\r\n        | project scopeId, tostring(metric), toint(['threshold'])\r\n        | where metric == \"DiskUsedPercentage\"\r\n        | where threshold == 70\r\n    ) on scopeId\r\n| where isnull(['threshold'])\r\n| project recommendationId = \"avs-3\", name, id, resourceGroup, tags, param1 = \"vsanCapacityWarningAlert: isNull or threshold != 70\"\r\n)",
               "size": 0,
               "showAnalytics": true,
               "title": "AVS-3 - Configure Azure Monitor Alert warning thresholds for vSAN datastore consumption",
@@ -3700,7 +3697,7 @@
             "conditionalVisibility": {
               "parameterName": "selectedService",
               "comparison": "isEqualTo",
-              "value": "WebApps"
+              "value": "WebApp"
             },
             "name": "APP-1"
           },
@@ -3723,7 +3720,7 @@
             "conditionalVisibility": {
               "parameterName": "selectedService",
               "comparison": "isEqualTo",
-              "value": "WebApps"
+              "value": "WebApp"
             },
             "name": "APP-2"
           },
@@ -3746,7 +3743,7 @@
             "conditionalVisibility": {
               "parameterName": "selectedService",
               "comparison": "isEqualTo",
-              "value": "WebApps"
+              "value": "WebApp"
             },
             "name": "APP-5"
           },
@@ -3769,7 +3766,7 @@
             "conditionalVisibility": {
               "parameterName": "selectedService",
               "comparison": "isEqualTo",
-              "value": "WebApps"
+              "value": "WebApp"
             },
             "name": "APP-6"
           }
