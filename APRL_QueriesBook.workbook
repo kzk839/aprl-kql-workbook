@@ -3648,7 +3648,7 @@
             "conditionalVisibility": {
               "parameterName": "selectedService",
               "comparison": "isEqualTo",
-              "value": "WebApps"
+              "value": "WebApp"
             },
             "name": "APP-1"
           },
@@ -3671,7 +3671,7 @@
             "conditionalVisibility": {
               "parameterName": "selectedService",
               "comparison": "isEqualTo",
-              "value": "WebApps"
+              "value": "WebApp"
             },
             "name": "APP-2"
           },
@@ -3694,7 +3694,7 @@
             "conditionalVisibility": {
               "parameterName": "selectedService",
               "comparison": "isEqualTo",
-              "value": "WebApps"
+              "value": "WebApp"
             },
             "name": "APP-5"
           },
@@ -3717,7 +3717,7 @@
             "conditionalVisibility": {
               "parameterName": "selectedService",
               "comparison": "isEqualTo",
-              "value": "WebApps"
+              "value": "WebApp"
             },
             "name": "APP-6"
           }
