@@ -4,10 +4,30 @@ This is a template of an Azure Workbooks that consolidates Azure Resource Graph 
 
 It summarizes the queries for each category and service to find resources that do not comply with the recommended practices, so that you can avoid copying and pasting queries one by one.
 
-This book is created manually, so may lag behind the original APRL.
+## Note
+These books are created manually, so may lag behind the original APRL.
+
+As of March 7, 2024 (JST), it reflects up to [PR #309](https://github.com/Azure/Azure-Proactive-Resiliency-Library/pull/309) in the original Repository
+
+- APRL_QueriesBook.workbook
+  
+  This workbook uses the KQL published at APRL without modification. It can only be filtered by subscription.
+  
+- APRL_QueriesBook_Filter.workbook
+  
+  This workbook is based on the KQL published at APRL, with modifications to allow for filtering.In addition to subscriptions, resource groups and tags can be used to filter.
 
 ## Screenshot
-![image](https://github.com/kzk839/aprl-kql-workbook/assets/3822284/055cce3e-8327-4e3b-b8c1-b6a83c6b1349)
+- APRL_QueriesBook.workbook
+
+<img width="893" alt="image" src="https://github.com/kzk839/aprl-kql-workbook/assets/67820613/bcea2fce-9b07-440c-8bc0-6e7edd55e17c">
+
+
+
+- APRL_QueriesBook_Filter.workbook
+
+<img width="888" alt="image" src="https://github.com/kzk839/aprl-kql-workbook/assets/67820613/ef36e38e-17c2-4718-8f81-0ff8fb9d06bd">
+
 
 ## How to import this Workbook on your Subscription
 
