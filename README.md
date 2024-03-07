@@ -7,17 +7,14 @@ It summarizes the queries for each category and service to find resources that d
 ## Note
 These books are created manually, so may lag behind the original APRL.
 
-As of March 7, 2024 (JST), it reflects up to [PR #309](https://github.com/Azure/Azure-Proactive-Resiliency-Library/pull/309) in the original Repository
-
-it has not been tested for all services.
+It has not been tested for all services.
 
 - APRL_QueriesBook.workbook
-  
-  This workbook uses the KQL published at APRL without modification. It can only be filtered by subscription.
-  
+  - This workbook uses the KQL published at APRL without modification. It can only be filtered by subscription.
+  - As of March 7, 2024 (JST), it reflects up to [PR #309](https://github.com/Azure/Azure-Proactive-Resiliency-Library/pull/309) in the original Repository
 - APRL_QueriesBook_Filter.workbook
-  
-  This workbook is based on the KQL published at APRL, with modifications to allow for filtering.In addition to subscriptions, resource groups and tags can be used to filter.
+  - This workbook is based on the KQL published at APRL, with modifications to allow for filtering.In addition to subscriptions, resource groups and tags can be used to filter.
+  - As of March 7, 2024 (JST), it reflects up to [PR #309](https://github.com/Azure/Azure-Proactive-Resiliency-Library/pull/309) in the original Repository
 
 ## Screenshot
 - APRL_QueriesBook.workbook
