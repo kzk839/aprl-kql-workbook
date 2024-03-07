@@ -1521,6 +1521,14 @@
                   "style": "link"
                 },
                 {
+                  "id": "5b37fe93-c755-48b2-b299-902004ed4e1a",
+                  "cellValue": "selectedService",
+                  "linkTarget": "parameter",
+                  "linkLabel": "DB for MySQL",
+                  "subTarget": "MySQL",
+                  "style": "link"
+                },
+                {
                   "id": "59fceab4-4134-40ef-8b1c-a21a32900e0b",
                   "cellValue": "selectedService",
                   "linkTarget": "parameter",
@@ -1705,6 +1713,52 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find Database for MySQL instances that are not zone redundant\r\nresources\r\n| where resourceGroup in ({ResourceGroups})\r\n| join kind = innerunique(\r\n    resources\r\n    | extend replaced_tags = replace('{}', 'null', tostring(tags))\r\n    | extend replaced_tags = parse_json(replaced_tags)\r\n    | mv-expand replaced_tags\r\n    | extend tagName = tostring(bag_keys(replaced_tags)[0])\r\n    | extend tagValue = tostring(replaced_tags['{TagName}'])\r\n    | where tagName has '{TagName}' and tagValue has '{TagValue}'\r\n    | distinct id\r\n    )\r\n    on id\r\n| where type == \"microsoft.dbformysql/flexibleservers\"\r\n| where properties.highAvailability.mode != \"ZoneRedundant\"\r\n| project recommendationId = \"psql-1\", name, id, resourceGroup, tags, param1 = \"ZoneRedundant: False\"",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "MYSQL-1 - Enable HA with zone redundancy",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "MySQL"
+            },
+            "name": "MYSQL-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find Database for MySQL instances that do not have a custom maintenance window\r\nresources\r\n| where resourceGroup in ({ResourceGroups})\r\n| join kind = innerunique(\r\n    resources\r\n    | extend replaced_tags = replace('{}', 'null', tostring(tags))\r\n    | extend replaced_tags = parse_json(replaced_tags)\r\n    | mv-expand replaced_tags\r\n    | extend tagName = tostring(bag_keys(replaced_tags)[0])\r\n    | extend tagValue = tostring(replaced_tags['{TagName}'])\r\n    | where tagName has '{TagName}' and tagValue has '{TagValue}'\r\n    | distinct id\r\n    )\r\n    on id\r\n| where type == \"microsoft.dbformysql/flexibleservers\"\r\n| where properties.maintenanceWindow.customWindow != \"Enabled\"\r\n| project recommendationId = \"psql-2\", name, id, resourceGroup, tags, param1 = strcat(\"customWindow:\", properties['maintenanceWindow']['customWindow'])",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "MYSQL-2 - Enable custom maintenance schedule",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "MySQL"
+            },
+            "name": "MYSQL-2"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
               "query": "// Azure Resource Graph Query\r\n// Find Database for PostgreSQL instances that are not zone redundant\r\nresources\r\n| where resourceGroup in ({ResourceGroups})\r\n| join kind = innerunique(\r\n    resources\r\n    | extend replaced_tags = replace('{}', 'null', tostring(tags))\r\n    | extend replaced_tags = parse_json(replaced_tags)\r\n    | mv-expand replaced_tags\r\n    | extend tagName = tostring(bag_keys(replaced_tags)[0])\r\n    | extend tagValue = tostring(replaced_tags['{TagName}'])\r\n    | where tagName has '{TagName}' and tagValue has '{TagValue}'\r\n    | distinct id\r\n    )\r\n    on id\r\n| where type == \"microsoft.dbforpostgresql/flexibleservers\"\r\n| where properties.highAvailability.mode != \"ZoneRedundant\"\r\n| project recommendationId = \"psql-1\", name, id, resourceGroup, tags, param1 = \"ZoneRedundant: False\"",
               "size": 0,
               "showAnalytics": true,
@@ -1723,6 +1777,29 @@
               "value": "PostgreSQL"
             },
             "name": "PSQL-1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "// Azure Resource Graph Query\r\n// Find Database for PostgreSQL instances that do not have a custom maintenance window\r\nresources\r\n| where resourceGroup in ({ResourceGroups})\r\n| join kind = innerunique(\r\n    resources\r\n    | extend replaced_tags = replace('{}', 'null', tostring(tags))\r\n    | extend replaced_tags = parse_json(replaced_tags)\r\n    | mv-expand replaced_tags\r\n    | extend tagName = tostring(bag_keys(replaced_tags)[0])\r\n    | extend tagValue = tostring(replaced_tags['{TagName}'])\r\n    | where tagName has '{TagName}' and tagValue has '{TagValue}'\r\n    | distinct id\r\n    )\r\n    on id\r\n| where type == \"microsoft.dbforpostgresql/flexibleservers\"\r\n| where properties.maintenanceWindow.customWindow != \"Enabled\"\r\n| project recommendationId = \"psql-2\", name, id, resourceGroup, tags, param1 = strcat(\"customWindow:\", properties['maintenanceWindow']['customWindow'])",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "PSQL-2 - Enable custom maintenance schedule",
+              "noDataMessageStyle": 3,
+              "showExportToExcel": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscriptions}"
+              ]
+            },
+            "conditionalVisibility": {
+              "parameterName": "selectedService",
+              "comparison": "isEqualTo",
+              "value": "PostgreSQL"
+            },
+            "name": "PSQL-2"
           },
           {
             "type": 3,
